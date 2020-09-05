@@ -85,12 +85,20 @@ class Remote(IRemote):
     })
 
     print(f"Sending control command: {key}")
-    self.connection.send(payload)
-    time.sleep(0.2)
-    if(post_command_timeout == None):
-      time.sleep(self.config_obj.data['post_command_ms_timeout'] / 1000)
-    else:
-      time.sleep(post_command_timeout)
+    try:
+      self.connection.send(payload)
+      time.sleep(0.2)
+      if(post_command_timeout == None):
+        time.sleep(self.config_obj.data['post_command_ms_timeout'] / 1000)
+      else:
+        time.sleep(post_command_timeout)
+      return True
+    except Exception as err:
+      print(err)
+      self.disconnect()
+      return False
+
+
      
 
   @staticmethod
