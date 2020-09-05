@@ -1,16 +1,25 @@
 import os
+import websocket
+import base64
+import json
+import time
 from ...iremote import IRemote
 from ....configfile import ConfigFileUtil
 
+
+
+URL_FORMAT = "ws://{}:{}/api/v2/channels/samsung.remote.control?name={}"
 default_config = {
 	"name": "samsung",
 	"description": "home-server",
 	"id": "home-server-01",
-	"tv-port": 8001,
-	"tv-ip": "192.168.0.200",
-	"connection-sec-timeout": 0,
-	"post-command-ms-timeout": 200
+	"tv_port": 8001,
+	"tv_ip": "192.168.0.200",
+	"connection_ms_timeout": 500,
+	"post_command_ms_timeout": 500
 }
+
+
 
 class Remote(IRemote):
   def __init__(self, config: dict):
@@ -24,8 +33,61 @@ class Remote(IRemote):
     self.config_obj.save_data()
 
 
+  def connect(self):
+    """"Establish Connection to Device"""
+
+    connection_timeout = None if(self.config_obj.data["connection_ms_timeout"] == 0) else self.config_obj.data["connection_ms_timeout"]
+    connection_url = URL_FORMAT.format(
+      self.config_obj.data["tv_ip"], 
+      self.config_obj.data["tv_port"], 
+      self._serialize_string(self.config_obj.data["name"])
+    )
+
+    self.connection = websocket.create_connection(connection_url, connection_timeout)
+    res = self.connection.recv()
+    res = json.loads(res)
+    print(res)
+
+    if res["event"] != "ms.channel.connect":
+      raise Exception("Connection failed with unknown cause")
+    else:
+      print("Connected to TV")
+      
 
 
-  def control(self, key: str, post_timeout: int) -> bool:
+
+  def disconnect(self):
+    """"Close Connection to Device"""
+
+    if self.connection:
+      self.connection.close()
+      self.connection = None
+    
+
+  def control(self, key: str, post_command_timeout = 0.2) -> bool:
     """Sends a Command and optionally wait for 'post_timeout'ms """
-    pass
+    if not self.connection:
+      raise Exception("Connection Closed")
+
+    payload = json.dumps({
+      "method": "ms.remote.control",
+      "params": {
+        "Cmd": "Click",
+        "DataOfCmd": key,
+        "Option": "false",
+        "TypeOfRemote": "SendRemoteKey"
+      }
+    })
+
+    print(f"Sending control command: {key}")
+    self.connection.send(payload)
+    time.sleep(self.config_obj.data['post_command_ms_timeout'] / 1000)
+    time.sleep(post_command_timeout)
+     
+
+  @staticmethod
+  def _serialize_string(string):
+    if isinstance(string, str):
+      string = str.encode(string)
+
+    return base64.b64encode(string).decode("utf-8")
