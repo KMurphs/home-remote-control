@@ -22,6 +22,9 @@ default_config = {
 
 
 class Remote(IRemote):
+  
+  
+
   def __init__(self, config: dict):
     """Initialize the remote object with relevant configuration"""
     
@@ -32,28 +35,30 @@ class Remote(IRemote):
       self.config_obj.data[key] = config[key]
     self.config_obj.save_data()
 
+    self.connection = None
+
 
   def connect(self):
     """"Establish Connection to Device"""
 
-    connection_timeout = None if(self.config_obj.data["connection_ms_timeout"] == 0) else self.config_obj.data["connection_ms_timeout"]
-    connection_url = URL_FORMAT.format(
-      self.config_obj.data["tv_ip"], 
-      self.config_obj.data["tv_port"], 
-      self._serialize_string(self.config_obj.data["name"])
-    )
+    if not self.connection:
+      connection_timeout = None if(self.config_obj.data["connection_ms_timeout"] == 0) else self.config_obj.data["connection_ms_timeout"]
+      connection_url = URL_FORMAT.format(
+        self.config_obj.data["tv_ip"], 
+        self.config_obj.data["tv_port"], 
+        self._serialize_string(self.config_obj.data["name"])
+      )
 
-    self.connection = websocket.create_connection(connection_url, connection_timeout)
-    res = self.connection.recv()
-    res = json.loads(res)
-    print(res)
+      self.connection = websocket.create_connection(connection_url, connection_timeout)
+      res = self.connection.recv()
+      res = json.loads(res)
+      print(res)
 
-    if res["event"] != "ms.channel.connect":
-      raise Exception("Connection failed with unknown cause")
-    else:
-      print("Connected to TV")
+      if res["event"] != "ms.channel.connect":
+        raise Exception("Connection failed with unknown cause")
+      else:
+        print("Connected to TV")
       
-
 
 
   def disconnect(self):
@@ -64,7 +69,7 @@ class Remote(IRemote):
       self.connection = None
     
 
-  def control(self, key: str, post_command_timeout = 0.2) -> bool:
+  def control(self, key: str, post_command_timeout = None) -> bool:
     """Sends a Command and optionally wait for 'post_timeout'ms """
     if not self.connection:
       raise Exception("Connection Closed")
@@ -81,8 +86,11 @@ class Remote(IRemote):
 
     print(f"Sending control command: {key}")
     self.connection.send(payload)
-    time.sleep(self.config_obj.data['post_command_ms_timeout'] / 1000)
-    time.sleep(post_command_timeout)
+    time.sleep(0.2)
+    if(post_command_timeout == None):
+      time.sleep(self.config_obj.data['post_command_ms_timeout'] / 1000)
+    else:
+      time.sleep(post_command_timeout)
      
 
   @staticmethod
