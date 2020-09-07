@@ -20,6 +20,9 @@ body{
   display: flex;
   overflow-x: hidden;
   position: relative;
+  flex-wrap: wrap;
+  scroll-behavior: smooth;
+  justify-content: center;
 }
 .sections-container-divisions.sections-container-divisions--menu{
   justify-content: center;
@@ -36,27 +39,34 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border: 1px solid red;
 }
 
 
 
 .sections-container-divisions > .section{
-  --side: calc(320px - 50px - 2px);
+  --side-min: calc(320px - 50px - 2px);
+  --side: calc(100% - 2px);
+  --side-max: calc(400px);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: var(--side);
-  min-height: var(--side);
+  min-width: var(--side-min);
+  min-height: var(--side-min);
+  max-width: var(--side-max);
+  max-height: var(--side-max);
   background-color: antiquewhite;
   border: 1px solid #555;
-  width: calc(100% - 2px);
+  width: var(--side);
+  /* height: var(--side); */
+  margin-bottom: 50px;
 }
 .sections-container-divisions > .section.section-sliding{
-  position: absolute;
+  /* position: absolute;
   top: 0;
   bottom: 0;
   left: 100%;
   transition: all .3s;
-  left: 0;
+  left: 0; */
 }
