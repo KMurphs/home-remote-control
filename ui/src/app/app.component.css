@@ -70,6 +70,9 @@
     min-height: calc((100vh) / 2);
     max-height: calc((100vh - 4px) / 2);
     max-height: calc((100vh) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .sections-container-divisions > .section.section--config{
     min-height: calc(100vh - 2px);
@@ -91,3 +94,7 @@
 }
 
 
+
+.buttons-container{
+  margin: 0 auto;
+}

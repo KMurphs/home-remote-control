@@ -1,0 +1,4 @@
+
+<div class="button-container" >
+  <app-button-control *ngFor="let button of buttons" [buttonData]="button" (onClickEvt)="handleKeyPress($event)" class="flex-verticaly-stretched"></app-button-control>
+</div>

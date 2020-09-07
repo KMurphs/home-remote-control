@@ -1,0 +1,6 @@
+<div [ngSwitch]="buttonData.color" class="flex-verticaly-stretched">
+  <app-button-control-primary *ngSwitchCase="'primary'" [buttonData]="buttonData" (onClickEvt)="this.onClickEvt.emit($event)" class="flex-verticaly-stretched" ></app-button-control-primary>
+  <app-button-control-accent *ngSwitchCase="'accent'" [buttonData]="buttonData" (onClickEvt)="this.onClickEvt.emit($event)" class="flex-verticaly-stretched"></app-button-control-accent>
+  <app-button-control-basic *ngSwitchDefault [buttonData]="buttonData" (onClickEvt)="this.onClickEvt.emit($event)" class="flex-verticaly-stretched"></app-button-control-basic>
+</div>
+

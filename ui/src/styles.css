@@ -18,4 +18,11 @@ body{
   box-sizing: border-box;
 }
 
+.invisible{
+  display: none;
+}
 
+.flex-verticaly-stretched{
+  display: flex;
+  align-items: stretch;
+}
