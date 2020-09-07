@@ -4,7 +4,7 @@ from flask import Flask, request, make_response, redirect, url_for, render_templ
 from app.remotes.tv.samsung.remote import Remote
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="", static_folder="dist/ui")
 
 remotes = {}
 
@@ -35,3 +35,16 @@ def post_command():
   res_data['result'] = 'success'
 
   return make_response(res_data, 200, {"Content-Type":"application/json"})
+
+
+
+@app.route('/')
+def home():
+    return app.send_static_file('index.html')
+    # return 'Hello, World!'
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return 'You want path: %s' % path
