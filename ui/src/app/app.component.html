@@ -1,6 +1,33 @@
 
 <div class="sections-container">
 
+  <div class="sections-container-divisions sections-container-divisions--content">
+    <div class="section section-sliding section--config" id="config">
+      Config
+    </div>
+
+    <div class="section section-sliding section--main" id="main">
+      <app-main-controls class="buttons-container"></app-main-controls>
+    </div>
+    
+    <div class="section section-sliding section--vol-chan" id="vol-chan">
+      <app-channels-volume-controls class="buttons-container"></app-channels-volume-controls>
+    </div>
+    <div class="section--group">
+      <div class="section section-sliding section--management" id="management">
+        <app-management-controls class="buttons-container"></app-management-controls>
+      </div>
+      <div class="section section-sliding section--numbers" id="numbers">
+        <app-numeric-controls class="buttons-container"></app-numeric-controls>
+      </div>
+      <div class="section section-sliding section--colors" id="colors">
+        <app-colored-controls class="buttons-container"></app-colored-controls>
+      </div>
+    </div>
+  </div>
+
+
+
   <div class="sections-container-divisions sections-container-divisions--menu">
     <div class="section--menu">
       <app-nav-link *ngFor="let link of links; let i = index" 
@@ -11,25 +38,6 @@
       </app-nav-link>
     </div>
   </div>
-
-
-  <div class="sections-container-divisions sections-container-divisions--content">
-    <div class="section section-sliding section--config" id="config">
-      Config
-    </div>
-
-    <div class="section section-sliding section--main" id="main">
-      <app-main-controls class="buttons-container"></app-main-controls>
-    </div>
-    
-    <div class="section section-sliding section--vol-chan" id="vol-chan">5</div>
-    <div class="section--group">
-      <div class="section section-sliding section--management" id="management">3</div>
-      <div class="section section-sliding section--numbers" id="numbers">6</div>
-      <div class="section section-sliding section--colors" id="colors">7</div>
-    </div>
-  </div>
-
 
 </div>
 

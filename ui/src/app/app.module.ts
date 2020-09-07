@@ -10,11 +10,16 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NavLinkComponent } from './nav-link/nav-link.component';
-import { MainControlsComponent } from './main-controls/main-controls.component';
+import { MainControlsComponent } from './remote-controls/main-controls.component';
 import { ButtonControlComponent } from './button-control/button-control.component';
 import { ButtonControlAccentComponent } from './button-control/button-control-accent.component';
 import { ButtonControlPrimaryComponent } from './button-control/button-control-primary.component';
 import { ButtonControlBasicComponent } from './button-control/button-control-basic.component';
+import { ManagementControlsComponent } from './remote-controls/management-controls.component';
+import { ChannelsVolumeControlsComponent } from './remote-controls/channels-volume-controls.component';
+import { NumericControlsComponent } from './remote-controls/numeric-controls.component';
+import { ColoredControlsComponent } from './remote-controls/colored-controls.component';
+
 
 
 @NgModule({
@@ -25,7 +30,11 @@ import { ButtonControlBasicComponent } from './button-control/button-control-bas
     ButtonControlComponent,
     ButtonControlPrimaryComponent,
     ButtonControlBasicComponent,
-    ButtonControlAccentComponent
+    ButtonControlAccentComponent,
+    ManagementControlsComponent,
+    ChannelsVolumeControlsComponent,
+    NumericControlsComponent,
+    ColoredControlsComponent
   ],
   imports: [
     BrowserModule,

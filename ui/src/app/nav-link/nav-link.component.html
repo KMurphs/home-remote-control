@@ -1,4 +1,6 @@
 <a class="{{isActive ? 'nav-link nav-link--active' : 'nav-link'}}" href="{{linkData.link}}" (click)="handleNavSelectionEvt()">
-  <span class="nav-link-icon"><mat-icon [attr.aria-hidden]="linkData.ariaHidden" [attr.aria-label]="linkData.ariaLabel">{{linkData.iconName}}</mat-icon></span>
+  
   <span class="nav-link-text"><p>{{linkData.iconText}}</p></span>
+  <span class="nav-link-icon"><mat-icon [attr.aria-hidden]="linkData.ariaHidden" [attr.aria-label]="linkData.ariaLabel">{{linkData.iconName}}</mat-icon></span>
+  
 </a>
