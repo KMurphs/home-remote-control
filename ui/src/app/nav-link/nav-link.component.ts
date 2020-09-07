@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TLinkData } from './nav-link.type'
 
 
@@ -11,8 +11,11 @@ export class NavLinkComponent implements OnInit {
 
   @Input() linkData: TLinkData
   @Input() isActive: boolean
+  @Output() navSelectionEvt = new EventEmitter();
 
-
+  handleNavSelectionEvt(){
+    this.navSelectionEvt.emit();
+  }
 
   constructor() { }
 

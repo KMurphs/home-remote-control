@@ -3,19 +3,24 @@
 
   <div class="sections-container-divisions sections-container-divisions--menu">
     <div class="section--menu">
-      <app-nav-link *ngFor="let link of links" [linkData]="link" class="nav-link-container"></app-nav-link>
+      <app-nav-link *ngFor="let link of links; let i = index" 
+                    [linkData]="link" 
+                    [isActive]="activeLink == i" 
+                    (navSelectionEvt)="setActiveLink(i)"
+                    class="nav-link-container">
+      </app-nav-link>
     </div>
   </div>
 
 
   <div class="sections-container-divisions sections-container-divisions--content">
-    <div class="section section-sliding section--config" id="section--config">2</div>
-    <div class="section section-sliding section--main" id="section--main">4</div>
-    <div class="section section-sliding section--vol-chan" id="section--vol-chan">5</div>
+    <div class="section section-sliding section--config" id="config">2</div>
+    <div class="section section-sliding section--main" id="main">4</div>
+    <div class="section section-sliding section--vol-chan" id="vol-chan">5</div>
     <div class="section--group">
-      <div class="section section-sliding section--management" id="section--management">3</div>
-      <div class="section section-sliding section--numbers" id="section--numbers">6</div>
-      <div class="section section-sliding section--colors" id="section--colors">7</div>
+      <div class="section section-sliding section--management" id="management">3</div>
+      <div class="section section-sliding section--numbers" id="numbers">6</div>
+      <div class="section section-sliding section--colors" id="colors">7</div>
     </div>
   </div>
 
