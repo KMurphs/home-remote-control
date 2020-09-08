@@ -20,6 +20,7 @@ import { ChannelsVolumeControlsComponent } from './remote-controls/channels-volu
 import { NumericControlsComponent } from './remote-controls/numeric-controls.component';
 import { ColoredControlsComponent } from './remote-controls/colored-controls.component';
 import { HomeComponent } from './home/home.component';
+import { ToIDPipe } from './to-id.pipe';
 
 
 
@@ -36,7 +37,8 @@ import { HomeComponent } from './home/home.component';
     ChannelsVolumeControlsComponent,
     NumericControlsComponent,
     ColoredControlsComponent,
-    HomeComponent
+    HomeComponent,
+    ToIDPipe
   ],
   imports: [
     BrowserModule,

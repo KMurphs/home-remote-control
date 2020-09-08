@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TLinkData } from '../nav-link/nav-link.type';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +30,19 @@ export class HomeComponent implements OnInit {
 
 
   
-  constructor(private apiService: ApiService) { }
+  constructor(private router : Router, private location: Location) { }
   ngOnInit(): void {
     this.activeLink = 2
+    console.log(this.router.url)
+    console.log(this.location.path(true))
+    console.log(window.location.href)
+    this.location.go(this.location.path(true))
+    setTimeout(()=>{
+      let element: HTMLElement = document.getElementById('to-main') as HTMLElement;
+      console.log(element)
+      element.click()
+    }, 200)
+
   }
 
 }
