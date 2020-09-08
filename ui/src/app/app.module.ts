@@ -19,6 +19,7 @@ import { ManagementControlsComponent } from './remote-controls/management-contro
 import { ChannelsVolumeControlsComponent } from './remote-controls/channels-volume-controls.component';
 import { NumericControlsComponent } from './remote-controls/numeric-controls.component';
 import { ColoredControlsComponent } from './remote-controls/colored-controls.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -34,7 +35,8 @@ import { ColoredControlsComponent } from './remote-controls/colored-controls.com
     ManagementControlsComponent,
     ChannelsVolumeControlsComponent,
     NumericControlsComponent,
-    ColoredControlsComponent
+    ColoredControlsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
