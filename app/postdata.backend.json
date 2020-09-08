@@ -1,0 +1,15 @@
+{
+  "device": {
+    "created": 1599579399613, 
+    "created_by": "None", 
+    "friendly_name": "", 
+    "id": "tv::samsung::1599579399613", 
+    "ip": "192.168.0.100", 
+    "model": "samsung", 
+    "port": 8000, 
+    "roles": [
+      "reader"
+    ], 
+    "type": "tv"
+  }
+}
