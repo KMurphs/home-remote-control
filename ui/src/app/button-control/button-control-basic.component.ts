@@ -11,11 +11,13 @@ export class ButtonControlBasicComponent implements OnInit {
   @Input() buttonData: TButtonControlData
   @Output() onClickEvt = new EventEmitter();
   scaleStyle: string 
+  cssClasses: string = "flex-verticaly-stretched button"
 
   constructor() { }
 
   ngOnInit(): void {
     this.scaleStyle = `transform: scale(${this.buttonData.scaleFactor})`
+    this.cssClasses = `${this.cssClasses} ${this.buttonData.cssClass}`
   }
 
 }

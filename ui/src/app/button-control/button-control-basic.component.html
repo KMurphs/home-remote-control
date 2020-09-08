@@ -1,4 +1,4 @@
-<button mat-raised-button class="flex-verticaly-stretched"  (click)="this.onClickEvt.emit(buttonData.keyCode)">
+<button *ngIf="buttonData.icon != '' || buttonData.text != ''" mat-raised-button [class]="cssClasses"  (click)="this.onClickEvt.emit(buttonData.keyCode)">
   <div class="button-content-wrapper">
 
     <span class="{{buttonData.icon == '' ? 'invisible' : 'button-content-icon'}}" [style]="scaleStyle">

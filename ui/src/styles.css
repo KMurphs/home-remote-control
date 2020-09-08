@@ -25,4 +25,5 @@ body{
 .flex-verticaly-stretched{
   display: flex;
   align-items: stretch;
+  width: 100%;
 }

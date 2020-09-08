@@ -6,4 +6,5 @@ export type TButtonControlData = {
   ariaHidden: boolean;
   scaleFactor: number;
   keyCode: string;
+  cssClass: string;
 }
