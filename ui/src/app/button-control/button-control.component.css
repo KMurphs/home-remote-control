@@ -104,6 +104,19 @@ button.btn-black:hover{
   color: white;
 }
 
+
+button.btn-orange{
+  background-color: #ca5d00;
+  color: white;
+}
+button.btn-orange .button-content-text--small{
+  color: #999;
+}
+button.btn-orange:hover{
+  background-color: #944400;
+  color: white;
+}
+
 .color-purple{
   color: #bd10bd;
 }
