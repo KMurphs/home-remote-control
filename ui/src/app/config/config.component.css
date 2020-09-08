@@ -1,0 +1,19 @@
+.app-input-field{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 220px;
+  margin-bottom: 1.5rem;
+  /* padding: 8rem; */
+  /* margin-left: 10%; */
+  /* margin: 0 auto; */
+}
+
+.config-container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+}

@@ -21,6 +21,8 @@ import { NumericControlsComponent } from './remote-controls/numeric-controls.com
 import { ColoredControlsComponent } from './remote-controls/colored-controls.component';
 import { HomeComponent } from './home/home.component';
 import { ToIDPipe } from './to-id.pipe';
+import { InputFieldTextComponent } from './input-field-text/input-field-text.component';
+import { ConfigComponent } from './config/config.component';
 
 
 
@@ -38,7 +40,9 @@ import { ToIDPipe } from './to-id.pipe';
     NumericControlsComponent,
     ColoredControlsComponent,
     HomeComponent,
-    ToIDPipe
+    ToIDPipe,
+    InputFieldTextComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
