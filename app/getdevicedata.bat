@@ -8,4 +8,4 @@ REM curl -X POST -d @postdata.json "http://localhost:5000/api/logs/new" --header
 set url=https://kmurphs-heroku-test.herokuapp.com
 if '%arg1%'=='local' (set url=http://localhost:5000)
 
-curl "%url%/api/v1/devices/tv::samsung::1599579399613" --header "Content-Type:application/json" > postdata.backend.json
+curl "%url%/api/v1/devices/tv::samsung::1599579108804" --header "Content-Type:application/json" > postdata.backend.json

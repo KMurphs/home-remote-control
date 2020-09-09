@@ -1,5 +1,7 @@
 from flask_pymongo import PyMongo
-from app.model_types import Device
+from app.model_types import Device, DeviceConfig, DeviceDetails
+
+# https://realpython.com/operator-function-overloading/
 
 mongoObj = None
 app = None
@@ -17,9 +19,28 @@ def init(_app):
   app.logger.info("Database Initialized..")
 
 
+def extract_device_config(deviceObj):
+  app.logger.info("Processing Device Configuration Data..")
+  deviceObj = DeviceConfig(deviceObj)
+  app.logger.debug(f"Configuration for device {str(deviceObj)}  Processed")
+  return deviceObj
+
+def extract_device_details(ping_response):
+  app.logger.info("Processing Device Details..")
+  deviceObj = DeviceDetails.fromPingResponse(ping_response)
+  app.logger.debug(f"Details for device {str(deviceObj)}  Processed")
+  return deviceObj
+
+def build_device(registration_data, ping_response):
+  app.logger.info("Building Device..")
+  devConfig = extract_device_config(registration_data)
+  devDetails = extract_device_details(ping_response)
+  deviceObj = Device(devConfig, devDetails, registration_data)
+  app.logger.debug(f"Device {str(deviceObj)} Built")
+  return deviceObj
+
 def register_device(deviceObj):
   app.logger.info("Registering Device..")
-  deviceObj = Device(deviceObj)
   newDev = mongoObj.db.devices.insert_one(deviceObj.toDict())
   app.logger.debug("Registered Device with id: " + str(newDev.inserted_id))
   return {"registered" : str(newDev.inserted_id)}
@@ -28,7 +49,7 @@ def update_device(device: Device):
   
   if "device" in device.keys():
     device = device["device"]
-  device = Device(device)
+  device = Device.fromObject(device)
   device = device.toDict()
 
   id = device["id"]
