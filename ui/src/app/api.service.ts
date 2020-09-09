@@ -26,8 +26,7 @@ export class ApiService {
     return new Promise((resolve, reject) => {
       try{
         this.httpClient.get(`${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.GET_DEVICES_ENDPOINT}`).subscribe((data: any) => {
-          console.log(data); 
-          let devices: TTelevision[] = (data as any[]).map(item => toTTelevision(item))
+          let devices: TTelevision[] = (data.devices as any[]).map(item => toTTelevision(item))
           resolve(devices)
         })
       }

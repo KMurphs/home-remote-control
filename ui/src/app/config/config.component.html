@@ -1,7 +1,27 @@
 
 <div class="config-container">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let dev of devices" [value]="dev.id">{{dev.friendly_name || dev.id}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Favorite food</mat-label>
+    <input matInput  placeholder="Ex. Pizza" value="Sushi">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Favorite food</mat-label>
+    <input matInput type="number" placeholder="Ex. Pizza" value="Sushi">
+  </mat-form-field>
+  
+
+  <!-- <app-input-field-text class="app-input-field"></app-input-field-text>
   <app-input-field-text class="app-input-field"></app-input-field-text>
   <app-input-field-text class="app-input-field"></app-input-field-text>
-  <app-input-field-text class="app-input-field"></app-input-field-text>
-  <app-input-field-text class="app-input-field"></app-input-field-text>
+  <app-input-field-text class="app-input-field"></app-input-field-text> -->
 </div>

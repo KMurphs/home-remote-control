@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+// import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { NavLinkComponent } from './nav-link/nav-link.component';
 import { MainControlsComponent } from './remote-controls/main-controls.component';
 import { ButtonControlComponent } from './button-control/button-control.component';
@@ -51,6 +54,10 @@ import { ConfigComponent } from './config/config.component';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
+    // MatFormField,
+    MatSelectModule,
+    // MatLabel,
+    MatInputModule,
     HttpClientModule
   ],
   providers: [],

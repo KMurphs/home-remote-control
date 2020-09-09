@@ -1,3 +1,4 @@
+
 export type TTelevision = {
   "created": number, 
   "created_by": string, 
@@ -10,7 +11,16 @@ export type TTelevision = {
   "type": string
 }
 export function toTTelevision(dataObj: any): TTelevision{
-  let dev: TTelevision;
-
-  return dev
+  if(!dataObj) throw "Data Object cannot be converted to TTelevision"
+  return {
+    ip: dataObj.ip || "",
+    id: dataObj.id || "",
+    type: dataObj.type || "",
+    port: dataObj.port || 0,
+    model:  dataObj.model || "",
+    created:  dataObj.created || "",
+    created_by:  dataObj.created_by || "",
+    friendly_name:  dataObj.friendly_name || "",
+    roles: [...dataObj.roles] || []
+  }
 }
