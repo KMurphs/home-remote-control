@@ -1,15 +1,3 @@
 {
-  "device": {
-    "created": 1599579108804, 
-    "created_by": "None", 
-    "friendly_name": "[TV] K-TV", 
-    "id": "tv::samsung::1599579108804", 
-    "ip": "192.168.0.100", 
-    "model": "samsung", 
-    "port": 8000, 
-    "roles": [
-      "reader"
-    ], 
-    "type": "tv"
-  }
+  "result": "Failed To Retrieve Device"
 }

@@ -90,7 +90,7 @@ class Device:
       assert(devConfig.port != None and devConfig.port != 0)
       assert(devDetails.id != None and devDetails.id != "")
       assert(devDetails.modelName != None and devDetails.modelName != "")
-
+      
       self.id = devDetails.id
       assert(self.id != None and self.id != "")
 
@@ -106,17 +106,18 @@ class Device:
         self.roles = [role.lower() for role in extraData["roles"]]
       else:
         self.roles = ["reader"]
-        
+      
     except:
       raise Exception("Provided Device is not a valid Device")
 
   @classmethod
   def fromObject(self, dataObj):
 
-    assert("details" in dataObj.keys() and dataObj.details != None)
-    assert("configuration" in dataObj.keys() and dataObj.configuration != None)
-    details = DeviceDetails(dataObj.details)
-    configuration = DeviceConfig(dataObj.configuration)
+    assert("details" in dataObj.keys() and dataObj["details"] != None)
+    assert("configuration" in dataObj.keys() and dataObj["configuration"] != None)
+    details = DeviceDetails(dataObj["details"])
+    configuration = DeviceConfig(dataObj["configuration"])
+    
 
     return self(configuration, details, dataObj)
 

@@ -46,7 +46,7 @@ def post_command():
   try:
     assert('id' in req_data.keys() and req_data.id != None and req_data.id != '')
     result = handle_remote(req_data['id'], f"{req_data['key']}", req_data['delay'])
-    res_data['result'] = 'success'
+    res_data['result'] = 'success' if result == 0 else 'failed'
     return make_response(res_data, 200, {"Content-Type":"application/json"})
   except Exception as err: 
     app.logger.error(err)
@@ -78,6 +78,12 @@ def register_device():
   except Exception as err: 
     app.logger.error(err)
     return make_response({'result': "Registration Failed"}, 500, {"Content-Type":"application/json"})
+
+
+
+
+
+
 
 
 @app.route('/api/v1/devices', methods=['PUT'])

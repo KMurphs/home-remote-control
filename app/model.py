@@ -39,25 +39,27 @@ def build_device(registration_data, ping_response):
   app.logger.debug(f"Device {str(deviceObj)} Built")
   return deviceObj
 
-def register_device(deviceObj):
+def register_device(deviceObj: Device):
   app.logger.info("Registering Device..")
+  ### Prevent creation of multiple devices with same id
+  dev = find_device_by_id(deviceObj.id)
+  assert(dev["device"] == None), f"Device with id '{deviceObj.id}' already exists"
   newDev = mongoObj.db.devices.insert_one(deviceObj.toDict())
-  app.logger.debug("Registered Device with id: " + str(newDev.inserted_id))
-  return {"registered" : str(newDev.inserted_id)}
+  # app.logger.debug("Registered Device with id: " + str(newDev.inserted_id))
+  app.logger.debug("Registered Device with id: " + str(deviceObj.id))
+  return {"registered" : str(deviceObj.id)}
 
 def update_device(device: Device):
   
   if "device" in device.keys():
     device = device["device"]
   device = Device.fromObject(device)
-  device = device.toDict()
 
+  device = device.toDict()
+  
   id = device["id"]
   del device["id"]
   del device["created"]
-  del device["type"]
-  del device["model"]
-
 
   app.logger.info("Updating Device with id: " + id)
   updateDoc = mongoObj.db.devices.update_one({'id': id}, {"$set": device})
@@ -73,8 +75,11 @@ def update_device(device: Device):
 def find_device_by_id(id: str):
   app.logger.info("Searching Device with id: " + id)
   item = mongoObj.db.devices.find_one({'id': id})
-  app.logger.debug("Device with id: '" + id + "' was found")
-  del item["_id"]
+  if(item != None):
+    app.logger.debug("Device with id: '" + id + "' was found")
+    del item["_id"]
+  else:
+    app.logger.debug("Device with id: '" + id + "' was not found")
   return {"device" : item}
 
 
