@@ -5,6 +5,7 @@ from markupsafe import escape
 
 from app.remotes.tv.samsung.remote import Remote
 import app.model as model
+import os
 
 app = Flask(__name__, static_url_path="", static_folder="dist/ui")
 
@@ -118,6 +119,28 @@ def find_all_devices():
 
 
 
+
+@app.route('/api/v1/class/<string:deviceClass>/families', methods=['GET'])
+def find_all_families(deviceClass):  
+  try: 
+    remote_dir = os.path.join(os.getcwd(), "remotes")
+    remote_dir = os.path.join(remote_dir, escape(deviceClass))
+    dirs = [dir for dir in os.listdir(remote_dir) if os.path.isdir(os.path.join(remote_dir, dir)) and dir[0:2] != "__"]
+    return make_response({"classFamilies": dirs}, 200, {"Content-Type":"application/json"})
+  except Exception as err: 
+    app.logger.error(err)
+    return make_response({'result': "Failed To Retrieve Device Classes"}, 500, {"Content-Type":"application/json"})
+
+
+@app.route('/api/v1/classes/', methods=['GET'])
+def find_all_classes():  
+  try: 
+    remote_dir = os.path.join(os.getcwd(), "remotes")
+    dirs = [dir for dir in os.listdir(remote_dir) if os.path.isdir(os.path.join(remote_dir, dir)) and dir[0] != "_"]
+    return make_response({"deviceClasses": dirs}, 200, {"Content-Type":"application/json"})
+  except Exception as err: 
+    app.logger.error(err)
+    return make_response({'result': "Failed To Retrieve Device Classes"}, 500, {"Content-Type":"application/json"})
 
 
 
