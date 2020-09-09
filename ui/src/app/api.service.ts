@@ -14,6 +14,8 @@ export class ApiService {
   private GET_DEVICE_BY_ID_ENDPOINT = "/devices";
   private UPDATE_DEVICE_ENDPOINT = "/devices";
   private DELETE_DEVICE_BY_ID_ENDPOINT = "/devices";
+  private GET_SUPPORTED_DEVICE_CLASSES_ENDPOINT = "/classes";
+  private GET_SUPPORTED_CLASS_FAMILIES_ENDPOINT = "/classe/xxclassxx/families";
 
 
   constructor(private httpClient: HttpClient) { }
@@ -51,6 +53,37 @@ export class ApiService {
   } 
 
 
+
+  public getSupportedDeviceClasses(): Promise<string[]> {  
+    return new Promise((resolve, reject) => {
+      try{
+        this.httpClient.get(`${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.GET_SUPPORTED_DEVICE_CLASSES_ENDPOINT}`).subscribe((data: any) => {
+          console.log(data); 
+          let classes: string[] = data.deviceClasses
+          resolve(classes)
+        })
+      }
+      catch(err){
+        reject(err)
+      }
+    }) 
+  } 
+  public getSupportedFamiliesForClass(device_class: string): Promise<string[]> {  
+    return new Promise((resolve, reject) => {
+      try{
+        this.httpClient.get(`${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.GET_SUPPORTED_CLASS_FAMILIES_ENDPOINT.replace("xxclassxx", device_class)}`).subscribe((data: any) => {
+          console.log(data); 
+          let families: string[] = data.classFamilies
+          resolve(families)
+        })
+      }
+      catch(err){
+        reject(err)
+      }
+    }) 
+  } 
+  
+  
 
 	public postKey(keyCode: string, delay = 0){  
 		return this.httpClient.post(

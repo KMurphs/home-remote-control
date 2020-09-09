@@ -11,9 +11,56 @@
 }
 
 .config-container{
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-self: stretch;
+  height: 100%;
+  padding-top: 1rem;
+}
+.config-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+}
+.config-icons-container{
+  position: relative
+}
+.config-icons{
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: -1em;
+}
+.config-icons button{
+  margin-left: .75rem;
+  background-color: #dfdfe0;
+  transform: background-color .3s;
+  /* transform: scale(1.2); */
+}
+.config-icons button:hover{
+  background-color: #c0c0da;
+  transform: background-color .3s;
+
+}
+.config-icons .material-icons{
+  font-size: 29px;
+}
+
+.config-icons .config-icon-add .material-icons{
+  position: relative;
+  left: -2px;
+}
+.config-icons .config-icon-refresh .material-icons{
+  font-size: 25px;
+} 
+
+.config-action{
+  margin-bottom: 1rem;
+}
+
+.config-divider{
+  margin: 1rem auto;
 }

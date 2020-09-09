@@ -1,24 +1,51 @@
 
 <div class="config-container">
 
-  <mat-form-field appearance="fill">
-    <mat-label>Select an option</mat-label>
-    <mat-select [(value)]="selected">
-      <mat-option>None</mat-option>
-      <mat-option *ngFor="let dev of devices" [value]="dev.id">{{dev.friendly_name || dev.id}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Favorite food</mat-label>
-    <input matInput  placeholder="Ex. Pizza" value="Sushi">
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Favorite food</mat-label>
-    <input matInput type="number" placeholder="Ex. Pizza" value="Sushi">
-  </mat-form-field>
+  <div class="config-section">
+    <mat-form-field appearance="fill">
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let dev of devices" [value]="dev.id">{{dev.friendly_name || dev.details.name || dev.id}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   
+  
+    <div class="config-icons-container">
+      <div class="config-icons">
+        <button mat-icon-button color="primary" class="config-icon-refresh" aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" class="config-icon-add" aria-label="Example icon button with a home icon">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+
+
+
+  
+  <div class="config-section">
+
+    
+    <mat-form-field class="config-field">
+      <mat-label>Favorite food</mat-label>
+      <input matInput  placeholder="Ex. Pizza" value="Sushi">
+    </mat-form-field>
+  
+  
+    <mat-divider class="config-divider"></mat-divider>
+  </div>
+
+
+
+  <div class="config-section">
+    <button class="config-action" mat-raised-button color="primary">Primary</button>
+    <button class="config-action" mat-raised-button color="warn">Warn</button>  
+  </div>
+
 
   <!-- <app-input-field-text class="app-input-field"></app-input-field-text>
   <app-input-field-text class="app-input-field"></app-input-field-text>
