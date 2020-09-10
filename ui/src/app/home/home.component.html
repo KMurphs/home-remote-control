@@ -2,7 +2,7 @@
 
   <div class="sections-container-divisions sections-container-divisions--content">
     
-    <div class="section section-sliding section--config" id="config">
+    <div class="section section-sliding section--config" id="config" *ngIf="activeLink==0">
       <app-config class="app-config" (selectedDeviceChange)="handleDifferentDevice($event)"></app-config>
     </div>
 

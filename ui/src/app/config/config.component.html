@@ -48,9 +48,13 @@
 
 
   <div class="config-section">
-    <mat-chip-list aria-label="Fish selection">
-      <app-role *ngFor="let role of roles" [role]="role" [isSelected]="deviceOnDisplay.roles.indexOf(role) != -1" (isSelectedChange)="handleRoleUpdate(role, $event)"></app-role>
-    </mat-chip-list>    
+    <mat-form-field class="config-field config-section-roles">
+      <p class="config-section-roles-title">Roles</p>
+      <mat-chip-list aria-label="Roles" class="">
+        <app-role *ngFor="let role of roles" [role]="role" [isSelected]="deviceOnDisplay.roles.indexOf(role) != -1" (isSelectedChange)="handleRoleUpdate(role, $event)"></app-role>
+      </mat-chip-list> 
+    </mat-form-field> 
+   
   </div>
 
 

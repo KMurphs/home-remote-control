@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ApiService } from '../api.service';
 import { TTelevision, TTelevisionConfig, TTelevisionDetails } from '../api.service.model.types';
 
@@ -11,6 +11,7 @@ export class ConfigComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
+  // @Input() hideConfigSections: boolean;
   @Output() selectedDeviceChange = new EventEmitter<string>();
 
   devices: TTelevision[] = []
