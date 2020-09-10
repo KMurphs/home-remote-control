@@ -26,9 +26,10 @@ def handle_remote(id: str, key: str, delay: float):
   try:
     if not id in remotes.keys():
       dev = model.find_device_by_id(id)
+      dev = dev["device"]
       remotes[id] = Remote({
-        "ip": dev.device.configuration.ip,
-        "port": dev.device.configuration.port
+        "ip": dev["configuration"]["ip"],
+        "port": dev["configuration"]["port"]
       })
 
     assert(remotes[id].connect() == 0)
@@ -45,7 +46,7 @@ def post_command():
   res_data = {}
 
   try:
-    assert('id' in req_data.keys() and req_data.id != None and req_data.id != '')
+    assert('id' in req_data.keys() and req_data['id'] != None and req_data['id'] != '')
     result = handle_remote(req_data['id'], f"{req_data['key']}", req_data['delay'])
     res_data['result'] = 'success' if result == 0 else 'failed'
     return make_response(res_data, 200, {"Content-Type":"application/json"})
@@ -141,6 +142,21 @@ def find_all_classes():
   except Exception as err: 
     app.logger.error(err)
     return make_response({'result': "Failed To Retrieve Device Classes"}, 500, {"Content-Type":"application/json"})
+
+
+@app.route('/api/v1/class/<string:deviceClass>/roles', methods=['GET'])
+def find_all_roles(deviceClass):  
+  try: 
+    roles_common = ["admin", "reader", "user", "offline_user"]
+    roles = {
+      "tv": ["tv_user", "tv_reader"]
+    }
+    assert(deviceClass in roles.keys())
+    return make_response({"classRoles": roles_common + roles[deviceClass]}, 200, {"Content-Type":"application/json"})
+  except Exception as err: 
+    app.logger.error(err)
+    return make_response({'result': "Device Class Not Supported"}, 500, {"Content-Type":"application/json"})
+
 
 
 

@@ -48,8 +48,8 @@ class Remote(IRemote):
     if not self.connection:
       connection_timeout = None if(self.config_obj.data["connection_ms_timeout"] == 0) else self.config_obj.data["connection_ms_timeout"]
       connection_url = CONTROL_URL_FORMAT.format(
-        self.config_obj.data["tv_ip"], 
-        self.config_obj.data["tv_port"], 
+        self.config_obj.data["ip"], 
+        self.config_obj.data["port"], 
         self._serialize_string(self.config_obj.data["name"])
       )
 
@@ -62,7 +62,8 @@ class Remote(IRemote):
         raise Exception("Connection failed with unknown cause")
       else:
         return 0
-      
+        
+    return 0
 
 
   def disconnect(self):
