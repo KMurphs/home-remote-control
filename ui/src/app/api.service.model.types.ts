@@ -55,7 +55,7 @@ export function toTTelevision(dataObj: any): TTelevision{
     created:  dataObj.created || "",
     created_by:  dataObj.created_by || "",
     friendly_name:  dataObj.friendly_name || "",
-    roles: [...dataObj.roles] || [],
+    roles: dataObj.roles.map((role:string)=>role.toLowerCase())|| [],
     configuration: toTTelevisionConfig(dataObj.configuration || {}),
     details: toTTelevisionDetails(dataObj.details || {})
   }

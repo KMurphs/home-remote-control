@@ -16,6 +16,7 @@ export class ApiService {
   private DELETE_DEVICE_BY_ID_ENDPOINT = "/devices";
   private GET_SUPPORTED_DEVICE_CLASSES_ENDPOINT = "/classes";
   private GET_SUPPORTED_CLASS_FAMILIES_ENDPOINT = "/class/xxclassxx/families";
+  private GET_SUPPORTED_CLASS_ROLES_ENDPOINT = "/class/xxclassxx/roles";
 
 
   constructor(private httpClient: HttpClient) { }
@@ -41,7 +42,6 @@ export class ApiService {
     return new Promise((resolve, reject) => {
       try{
         this.httpClient.get(`${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.GET_DEVICE_BY_ID_ENDPOINT}\\${deviceID}`).subscribe((data: any) => {
-          console.log(data); 
           let device: TTelevision = toTTelevision(data)
           resolve(device)
         })
@@ -58,7 +58,6 @@ export class ApiService {
     return new Promise((resolve, reject) => {
       try{
         this.httpClient.get(`${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.GET_SUPPORTED_DEVICE_CLASSES_ENDPOINT}`).subscribe((data: any) => {
-          console.log(data); 
           let classes: string[] = data.deviceClasses
           resolve(classes)
         })
@@ -71,8 +70,7 @@ export class ApiService {
   public getSupportedFamiliesForClass(device_class: string): Promise<string[]> {  
     return new Promise((resolve, reject) => {
       try{
-        this.httpClient.get(`${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.GET_SUPPORTED_CLASS_FAMILIES_ENDPOINT.replace("xxclassxx", device_class)}`).subscribe((data: any) => {
-          console.log(data); 
+        this.httpClient.get(`${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.GET_SUPPORTED_CLASS_FAMILIES_ENDPOINT.replace("xxclassxx", device_class)}`).subscribe((data: any) => { 
           let families: string[] = data.classFamilies
           resolve(families)
         })
@@ -82,12 +80,26 @@ export class ApiService {
       }
     }) 
   } 
-  
+  public getSupportedRolesForClass(device_class: string): Promise<string[]> {  
+    return new Promise((resolve, reject) => {
+      try{
+        this.httpClient.get(`${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.GET_SUPPORTED_CLASS_ROLES_ENDPOINT.replace("xxclassxx", device_class)}`).subscribe((data: any) => {
+          console.log(data); 
+          let roles: string[] = data.classRoles.map((role:string) => role.toLowerCase())
+          resolve(roles)
+        })
+      }
+      catch(err){
+        reject(err)
+      }
+    }) 
+  } 
   
 
-	public postKey(keyCode: string, delay = 0){  
+	public postKey(id: string, keyCode: string, delay = 0){ 
 		return this.httpClient.post(
       `${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.POST_TV_KEY_ENDPOINT}`, {
+        "id": id,
         "key": keyCode,
         "delay": delay 
       },{ headers: { "Content-Type": "application/json" } }
@@ -95,7 +107,6 @@ export class ApiService {
   }  
 	public postNewDevice(deviceObj: TTelevision | any){  
     const device: TTelevisionConfig = toTTelevisionConfig(deviceObj.configuration)
-    console.log(deviceObj, device)
 		return this.httpClient.post(
       `${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.POST_NEW_DEVICE_ENDPOINT}`,
       device,
@@ -105,7 +116,6 @@ export class ApiService {
 
   public updateDevice(deviceObj: TTelevision | any){  
     const device: TTelevision = toTTelevision(deviceObj)
-    console.log(device)
 		return this.httpClient.put(
       `${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.UPDATE_DEVICE_ENDPOINT}`, {
         "device": device

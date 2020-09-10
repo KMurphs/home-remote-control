@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TButtonControlData } from '../button-control/button-control.type';
 import { ApiService } from '../api.service';
 import { buttonsData } from './remote-controls.utils';
@@ -10,6 +10,7 @@ import { buttonsData } from './remote-controls.utils';
 })
 export class ColoredControlsComponent implements OnInit {
 
+  @Input() devID: string;
   delay: number = buttonsData.defaultDelayOnKeyPress
   buttons: TButtonControlData[] = buttonsData.coloredButtons
   
@@ -20,8 +21,8 @@ export class ColoredControlsComponent implements OnInit {
   }
 
   handleKeyPress(keyCode: string){
-    console.log("Sending key: '", keyCode, "' - delay: ", this.delay)
-    this.apiService.postKey(keyCode, this.delay).subscribe((data: any) => {
+    console.log("Sending key: '", keyCode, "' - delay: ", this.delay, " - to device: ", this.devID)
+    this.apiService.postKey(this.devID, keyCode, this.delay).subscribe((data: any) => {
       console.log(data); 
     })
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../api.service';
 import { TTelevision, TTelevisionConfig, TTelevisionDetails } from '../api.service.model.types';
 
@@ -11,11 +11,27 @@ export class ConfigComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
+  @Output() selectedDeviceChange = new EventEmitter<string>();
+
   devices: TTelevision[] = []
   families: string[]
+  roles: string[]
   classes: string[]
   deviceOnDisplay: TTelevision 
   isCreatingDevice: boolean = false;// || true;
+
+
+  handleRoleUpdate(role: string, isSelected:boolean){
+    console.log("Role '", role, "' is ", isSelected?"selected":"deselected")
+    // role must be added and not already there
+    if(isSelected && this.deviceOnDisplay.roles.indexOf(role) == -1){
+      this.deviceOnDisplay.roles = [...this.deviceOnDisplay.roles, role]
+    }
+    // role must be removed and already listed 
+    else if(!isSelected && this.deviceOnDisplay.roles.indexOf(role) != -1){
+      this.deviceOnDisplay.roles = this.deviceOnDisplay.roles.filter(devRole => devRole != role)
+    }
+  }
 
   ngOnInit(): void {
     this.resetDeviceOnDisplay()
@@ -35,6 +51,8 @@ export class ConfigComponent implements OnInit {
     this.deviceOnDisplay.configuration = ({} as TTelevisionConfig)
     this.deviceOnDisplay.configuration.ip = ""
     this.deviceOnDisplay.configuration.port = 0
+    this.deviceOnDisplay.configuration.class = "None"
+    this.deviceOnDisplay.configuration.family = "None"
     this.deviceOnDisplay.details = ({} as TTelevisionDetails)
     this.deviceOnDisplay.roles = []
   }
@@ -61,8 +79,13 @@ export class ConfigComponent implements OnInit {
       .catch(err => reject(err))
     })
   }
-
-
+  fetchRoles(devClass: string){
+    return new Promise((resolve, reject) => {
+      this.apiService.getSupportedRolesForClass(devClass)
+      .then(roles => { this.roles = [...roles]; resolve('success'); })
+      .catch(err => reject(err))
+    })
+  }
 
 
 
@@ -86,16 +109,18 @@ export class ConfigComponent implements OnInit {
     if(!devID){
       this.resetDeviceOnDisplay()
     }
-    let oldClass = this.deviceOnDisplay.configuration.family
+    let oldClass = this.deviceOnDisplay.configuration.class
     this.devices.forEach((dev, index, devs) => (dev.id == devID) && (this.deviceOnDisplay = {...devs[index]}))
     if(oldClass != this.deviceOnDisplay.configuration.class){
       this.handleDifferentClass(this.deviceOnDisplay.configuration.class)
     }
-    console.log(this.deviceOnDisplay)
+    this.selectedDeviceChange.emit(this.deviceOnDisplay.id)
+    console.log("New Device On Display: ", this.deviceOnDisplay)
   }
   handleDifferentClass(devClass){
-    console.log(`Retrieving device families for class '${devClass}'`)
-    this.fetchFamilies(devClass).then(fams => console.log(devClass, fams))
+    // console.log(`Retrieving device families for class '${devClass}'`)
+    this.fetchFamilies(devClass)//.then(fams => console.log(devClass, fams))
+    this.fetchRoles(devClass)//.then(roles => console.log(devClass, roles))
   }
   handleDifferentFamily(devFamily){
     // console.log(`Retrieving device families for class '${devClass}'`)

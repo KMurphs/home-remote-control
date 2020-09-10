@@ -12,6 +12,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 // import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { NavLinkComponent } from './nav-link/nav-link.component';
@@ -29,6 +30,8 @@ import { ToIDPipe } from './to-id.pipe';
 import { InputFieldTextComponent } from './input-field-text/input-field-text.component';
 import { ConfigComponent } from './config/config.component';
 import { ToUpperPipe } from './to-upper.pipe';
+import { InvalidSelectValueDirective } from './invalid-select-value.directive';
+import { RoleComponent } from './role/role.component';
 
 
 
@@ -49,7 +52,9 @@ import { ToUpperPipe } from './to-upper.pipe';
     ToIDPipe,
     InputFieldTextComponent,
     ConfigComponent,
-    ToUpperPipe
+    ToUpperPipe,
+    InvalidSelectValueDirective,
+    RoleComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,7 @@ import { ToUpperPipe } from './to-upper.pipe';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
-    // MatFormField,
+    MatChipsModule,
     MatSelectModule,
     FormsModule,
     MatInputModule,

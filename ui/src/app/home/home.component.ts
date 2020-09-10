@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { TLinkData } from '../nav-link/nav-link.type';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import {Location} from '@angular/common';
 export class HomeComponent implements OnInit {
 
   activeLink = 2;
+  selectedDeviceID: string = '';
 
   // https://material.io/resources/icons/?search=import&style=baseline
   links: TLinkData[] = [
@@ -33,16 +34,23 @@ export class HomeComponent implements OnInit {
   constructor(private router : Router, private location: Location) { }
   ngOnInit(): void {
     this.activeLink = 2
-    console.log(this.router.url)
-    console.log(this.location.path(true))
-    console.log(window.location.href)
+    // console.log(this.router.url)
+    // console.log(this.location.path(true))
+    // console.log(window.location.href)
     this.location.go(this.location.path(true))
     setTimeout(()=>{
       let element: HTMLElement = document.getElementById('to-main') as HTMLElement;
-      console.log(element)
+      // console.log(element)
       element.click()
     }, 200)
 
   }
+
+  handleDifferentDevice(newDevID: string){
+    // console.log("Configured Device was changed from: '", this.selectedDeviceID, "' to '", newDevID, "'")
+    this.selectedDeviceID = newDevID;
+  }
+
+
 
 }

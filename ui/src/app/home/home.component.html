@@ -3,27 +3,27 @@
   <div class="sections-container-divisions sections-container-divisions--content">
     
     <div class="section section-sliding section--config" id="config">
-      <app-config class="app-config"></app-config>
+      <app-config class="app-config" (selectedDeviceChange)="handleDifferentDevice($event)"></app-config>
     </div>
 
     <div class="section--group">
       <div class="section section-sliding section--main" id="main">
-        <app-main-controls class="buttons-container"></app-main-controls>
+        <app-main-controls [devID]="selectedDeviceID" class="buttons-container"></app-main-controls>
       </div>
       
       <div class="section section-sliding section--vol-chan" id="vol-chan">
-        <app-channels-volume-controls class="buttons-container"></app-channels-volume-controls>
+        <app-channels-volume-controls [devID]="selectedDeviceID" class="buttons-container"></app-channels-volume-controls>
       </div>
     </div>
     <div class="section--group">
       <div class="section section-sliding section--management" id="management">
-        <app-management-controls class="buttons-container"></app-management-controls>
+        <app-management-controls [devID]="selectedDeviceID" class="buttons-container"></app-management-controls>
       </div>
       <div class="section section-sliding section--numbers" id="numbers">
-        <app-numeric-controls class="buttons-container"></app-numeric-controls>
+        <app-numeric-controls [devID]="selectedDeviceID" class="buttons-container"></app-numeric-controls>
       </div>
       <div class="section section-sliding section--colors" id="colors">
-        <app-colored-controls class="buttons-container"></app-colored-controls>
+        <app-colored-controls [devID]="selectedDeviceID" class="buttons-container"></app-colored-controls>
       </div>
     </div>
   </div>
