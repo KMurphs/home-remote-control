@@ -31,8 +31,8 @@ export function toTTelevisionConfig(dataObj: any): TTelevisionConfig{
   return {
     ip: dataObj.ip || "",
     port: dataObj.port || 0,
-    class:  dataObj.model || "",
-    family:  dataObj.created || ""
+    class:  dataObj.class || "",
+    family:  dataObj.family || ""
   }
 }
 export function toTTelevisionDetails(dataObj: any): TTelevisionDetails{

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { toTTelevision, TTelevision } from './api.service.model.types';
+import { toTTelevision, TTelevision, TTelevisionConfig, toTTelevisionConfig } from './api.service.model.types';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class ApiService {
   private UPDATE_DEVICE_ENDPOINT = "/devices";
   private DELETE_DEVICE_BY_ID_ENDPOINT = "/devices";
   private GET_SUPPORTED_DEVICE_CLASSES_ENDPOINT = "/classes";
-  private GET_SUPPORTED_CLASS_FAMILIES_ENDPOINT = "/classe/xxclassxx/families";
+  private GET_SUPPORTED_CLASS_FAMILIES_ENDPOINT = "/class/xxclassxx/families";
 
 
   constructor(private httpClient: HttpClient) { }
@@ -93,18 +93,19 @@ export class ApiService {
       },{ headers: { "Content-Type": "application/json" } }
     );  
   }  
-	public postNewDevice(deviceObj: any){  
-    const device: TTelevision = toTTelevision(deviceObj)
+	public postNewDevice(deviceObj: TTelevision | any){  
+    const device: TTelevisionConfig = toTTelevisionConfig(deviceObj.configuration)
+    console.log(deviceObj, device)
 		return this.httpClient.post(
-      `${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.POST_NEW_DEVICE_ENDPOINT}`, {
-        "device": device
-      },{ headers: { "Content-Type": "application/json" } }
+      `${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.POST_NEW_DEVICE_ENDPOINT}`,
+      device,
+      { headers: { "Content-Type": "application/json" } }
     );  
   } 
 
-
-  public updateDevice(deviceObj: any){  
+  public updateDevice(deviceObj: TTelevision | any){  
     const device: TTelevision = toTTelevision(deviceObj)
+    console.log(device)
 		return this.httpClient.put(
       `${this.SERVER_BASE_URL}${this.SERVER_API_URI}${this.UPDATE_DEVICE_ENDPOINT}`, {
         "device": device

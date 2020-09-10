@@ -76,14 +76,14 @@ export const buttonsData: TButtonsData = {
     // { keyCode: "",            color: "",        icon: "",                    text: "",         ariaLabel: "",            ariaHidden: false, scaleFactor: 1, cssClass: ".btn-red" },
     // { keyCode: "",            color: "",        icon: "",                    text: "",         ariaLabel: "",            ariaHidden: false, scaleFactor: 1, cssClass: ".btn-red" },
     // { keyCode: "",            color: "",        icon: "",                    text: "",         ariaLabel: "",            ariaHidden: false, scaleFactor: 1, cssClass: ".btn-red" },
-
-    { keyCode: "KEY_CHUP",    color: "",        icon: "arrow_left",          text: "Ch Up",    ariaLabel: "Left Key",    ariaHidden: false, scaleFactor: 1.7, cssClass: ".btn-red" },
-    { keyCode: "KEY_CH_LIST", color: "",        icon: "list",                text: "Ch List",  ariaLabel: "Source Key",  ariaHidden: false, scaleFactor: 1,   cssClass: ".btn-red" },
-    { keyCode: "KEY_CHDOWN",  color: "",        icon: "arrow_right",         text: "Ch Down",  ariaLabel: "Right Key",   ariaHidden: false, scaleFactor: 1.7, cssClass: ".btn-red" },
     
     { keyCode: "KEY_MUTE",    color: "",        icon: "volume_off",         text: "Mute",     ariaLabel: "Up Key",      ariaHidden: false, scaleFactor: 1, cssClass: "color-purple" },
     { keyCode: "KEY_VOLDOWN", color: "",        icon: "volume_down",         text: "Vol Down", ariaLabel: "Info Key",    ariaHidden: false, scaleFactor: 1, cssClass: "color-purple" },
     { keyCode: "KEY_VOLUP",   color: "",        icon: "volume_up",           text: "Vol Up",   ariaLabel: "Tools Key",   ariaHidden: false, scaleFactor: 1, cssClass: "color-purple" },
+
+    { keyCode: "KEY_CHUP",    color: "",        icon: "arrow_left",          text: "Ch Up",    ariaLabel: "Left Key",    ariaHidden: false, scaleFactor: 1.7, cssClass: ".btn-red" },
+    { keyCode: "KEY_CH_LIST", color: "",        icon: "list",                text: "Ch List",  ariaLabel: "Source Key",  ariaHidden: false, scaleFactor: 1,   cssClass: ".btn-red" },
+    { keyCode: "KEY_CHDOWN",  color: "",        icon: "arrow_right",         text: "Ch Down",  ariaLabel: "Right Key",   ariaHidden: false, scaleFactor: 1.7, cssClass: ".btn-red" },
 
   ]
 }

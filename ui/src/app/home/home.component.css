@@ -86,7 +86,8 @@
 .sections-container-divisions > .section.section--config{
     min-height: calc(100vh - 2px);
     min-height: calc(100vh);
-    height: calc(100vh - (2 * 1rem));
+    /* height: calc(100vh - (2 * 1rem)); */
+    min-height: calc(100vh - (2 * 1rem));
     display: flex;
     display: grid;
     grid-template-rows: 1fr;
@@ -133,6 +134,9 @@
   }
   .sections-container-divisions--content{
     border-right: none;
+  }
+  .sections-container-divisions > .section.section--config{
+    overflow-y: auto;
   }
 }
 

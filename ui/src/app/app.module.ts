@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +28,7 @@ import { HomeComponent } from './home/home.component';
 import { ToIDPipe } from './to-id.pipe';
 import { InputFieldTextComponent } from './input-field-text/input-field-text.component';
 import { ConfigComponent } from './config/config.component';
+import { ToUpperPipe } from './to-upper.pipe';
 
 
 
@@ -45,7 +48,8 @@ import { ConfigComponent } from './config/config.component';
     HomeComponent,
     ToIDPipe,
     InputFieldTextComponent,
-    ConfigComponent
+    ConfigComponent,
+    ToUpperPipe
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,7 @@ import { ConfigComponent } from './config/config.component';
     MatIconModule,
     // MatFormField,
     MatSelectModule,
-    // MatLabel,
+    FormsModule,
     MatInputModule,
     HttpClientModule
   ],
