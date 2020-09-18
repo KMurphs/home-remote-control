@@ -11,83 +11,6 @@
 	
 	
 	<section class="app-root">
-		<button>Send Message</button>
-		<hr class="uk-divider-icon">
-		<br>
-		<a href="" uk-icon="cog" class="uk-icon-button uk-button-primary" uk-toggle="target: #my-id" type="button"></a>
-		<a href="" uk-icon="heart" class="uk-icon-button uk-button-primary"></a>
-		<a href="" uk-icon="heart" class="uk-icon-button uk-button-secondary"></a>
-		<a href="" uk-icon="icon: heart; ratio: .8" class="uk-icon-button uk-button-danger "></a>
-		<br/>
-		
-		<hr class="uk-divider-icon">
-		<div class="remote-group uk-flex uk-flex-wrap">
-
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-secondary uk-flex uk-flex-column uk-flex-center" click="()=>{console.log('1223456')}">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-			
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-danger uk-flex uk-flex-column uk-flex-center">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-			
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-			
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-default uk-flex uk-flex-column uk-flex-center">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-			
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-			
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-			
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-			
-			<div class="remote-group-item ">
-				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
-					<span uk-icon="icon: home; ratio: 1.5"></span>
-					<span class="uk-text-small uk-margin-top">Primary</span>
-				</button>
-			</div>
-
-		</div>
-
 	</section>
 
 
@@ -108,14 +31,33 @@
 	<script src="js/mustache.min.js"></script>
 	<script src="js/uikit.min.js"></script>
 	<script src="js/uikit-icons.min.js"></script>
+	<script src="./js/templates.js"></script>
 	<script src="./js/keys.js"></script>
 	<script src="./js/ws.js"></script>
 	<script>
-		document.querySelector("button").addEventListener('click', ()=>{
-			sendMessage("hhello")
-			.then((res)=>console.log(res))
-			.catch((res)=>console.error(res))
-		})
+		const ws = new DeviceWebsocket()
+		ws.connect();
+		const data = {
+			'groups': Object.keys(remoteKeys).map(objKey => {
+				let res = { 'name': objKey }; 
+				res['entries'] = remoteKeys[objKey]; 
+				return res;
+			})
+		}
+		console.log(data)
+		html = Mustache.render(template, data);
+		document.querySelector(".app-root").innerHTML = html	
+
+		function fct(keyCode){
+			console.log(keyCode)
+			ws.applyKey(keyCode)
+		}
+
+		// document.querySelector("button").addEventListener('click', ()=>{
+		// 	sendMessage("hhello")
+		// 	.then((res)=>console.log(res))
+		// 	.catch((res)=>console.error(res))
+		// })
 	</script>
   
 </body>
