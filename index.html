@@ -2,13 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/uikit.min.css" />
   <link rel="stylesheet" href="./css/index.css">
   <title>Document</title>
 </head>
 <body>
 	
-	<button>Send Message</button>
+	
+	<section class="app-root">
+		<button>Send Message</button>
+		<hr class="uk-divider-icon">
+		<br>
+		<a href="" uk-icon="cog" class="uk-icon-button uk-button-primary" uk-toggle="target: #my-id" type="button"></a>
+		<a href="" uk-icon="heart" class="uk-icon-button uk-button-primary"></a>
+		<a href="" uk-icon="heart" class="uk-icon-button uk-button-secondary"></a>
+		<a href="" uk-icon="icon: heart; ratio: .8" class="uk-icon-button uk-button-danger "></a>
+		<br/>
+		<hr class="uk-divider-icon">
+
+		<div class="remote-group uk-flex uk-flex-wrap">
+
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-secondary uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+			
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-danger uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+			
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+			
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-default uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+			
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+			
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+			
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+			
+			<div class="remote-group-item ">
+				<button class="uk-button uk-button-primary uk-flex uk-flex-column uk-flex-center">
+					<span uk-icon="icon: home; ratio: 1.5"></span>
+					<span class="uk-text-small uk-margin-top">Primary</span>
+				</button>
+			</div>
+
+		</div>
+
+	</section>
+
+
+
+	<section>
+		<!-- This is the modal -->
+		<div id="my-id" uk-modal>
+			<div class="uk-modal-dialog uk-modal-body">
+					<h2 class="uk-modal-title"></h2>
+					<button class="uk-modal-close" type="button"></button>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<script src="js/uikit.min.js"></script>
+	<script src="js/uikit-icons.min.js"></script>
 	<script src="./js/keys.js"></script>
 	<script src="./js/ws.js"></script>
 	<script>
