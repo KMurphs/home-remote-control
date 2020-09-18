@@ -10,7 +10,7 @@ function DeviceWebsocket(deviceIP = "192.168.0.200", devicePort = 8001, clientNa
 	console.warn(deviceIP, devicePort, clientName)
 }
 DeviceWebsocket.prototype.version = "1.0"
-DeviceWebsocket.prototype.connect = function(onError = null, onMessage = null, onOpen = null, onClose = null,){
+DeviceWebsocket.prototype.connect = function(onError = null, onMessage = null, onOpen = null, onClose = null){
 
 	this.ws = new WebSocket(`ws://${this.deviceIP}:${this.devicePort}/api/v2/channels/samsung.remote.control?name=${btoa(this.clientName)}`)
 	
