@@ -1,7 +1,0 @@
-<!-- <a class="{{isActive ? 'nav-link nav-link--active' : 'nav-link'}}" [routerLink]='"."' [fragment]="linkData.link" (click)="handleNavSelectionEvt()"> -->
-<a class="{{isActive ? 'nav-link nav-link--active' : 'nav-link'}}" [attr.href]="linkData.link" [attr.id]="linkData.link | toID" (click)="handleNavSelectionEvt()">
-  
-  <span class="nav-link-text"><p>{{linkData.iconText}}</p></span>
-  <span class="nav-link-icon"><mat-icon [attr.aria-hidden]="linkData.ariaHidden" [attr.aria-label]="linkData.ariaLabel">{{linkData.iconName}}</mat-icon></span>
-  
-</a>
