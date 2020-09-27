@@ -7,7 +7,7 @@ var template = "\
 \
     {{#entries}}\
       <div class='remote-group-item '>\
-        <button class='uk-button uk-button-{{color}} uk-flex uk-flex-column uk-flex-center {{cssClass}}' onclick=\"fct('{{code}}')\">\
+        <button class='uk-button uk-button-{{color}} uk-flex uk-flex-column uk-flex-center uk-flex-middle {{cssClass}}' onclick=\"fct('{{code}}')\">\
           <span uk-icon='icon: {{icon}}; ratio: {{scaleFactor}}'></span>\
           <span class='uk-text-small uk-margin-top'>{{text}}</span>\
         </button>\
