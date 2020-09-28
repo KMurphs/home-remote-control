@@ -3,31 +3,17 @@
 <head>
 	<!-- https://app-manifest.firebaseapp.com/?ref=hackernoon.com -->
 	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="./css/uikit.min.css" />
+
 	<link rel="stylesheet" href="./css/index.css">
 	<link rel="shortcut icon" href="./favicon.ico">
 
-
-	<link rel="manifest" href="./manifest.json">
-	<!-- Support for safari -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-title" content="Home Remote">
-	<link rel="apple-touch-icon" href="./launcher-icon-2x.png" sizes="92x92">
-	<!-- <link rel="apple-touch-icon" href="/src/images/icons/apple-icon-57x57.png" sizes="57x57"> Add the rest of the icons, the browser will -->
-	<link rel="apple-touch-icon" href="./launcher-icon-3x.png" sizes="144x144">
-	<!-- Support for internet explorer -->
-	<meta name="msapplication-TitleImage" content="./launcher-icon-2x.png">
-	<meta name="msapplication-TitleColor" content="#3f51b5">
-	<meta name="theme-color" content="#3f51b5">
   <title>Home Remote</title>
 </head>
 <body>
-	<noscript>
-		You need to enable JavaScript to run this app.
-	</noscript>	
+
 	
 	<section class="app-root">
 	</section>
@@ -46,27 +32,20 @@
 
 
 
-	<script>
-    if ('serviceWorker' in navigator) {
-			window.addEventListener('load', function() {
-				navigator.serviceWorker.register('sw.js')
-				.then(function(registration) {
-					console.log('Worker registration successful', registration.scope);
-				}, function(err) {
-					console.log('Worker registration failed', err);
-				})
-				.catch(function(err) {
-					console.log(err);
-				});
-			});
-		} else {
-			console.log('Service Worker is not supported by browser.');
-		}
-	</script>
 
-	<script src="./js/mustache.min.js"></script>
-	<script src="./js/uikit.min.js"></script>
-	<script src="./js/uikit-icons.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js" 
+					integrity="sha512-6AXIWogbKpsHvoZJrJtHpIYES4wP8czSj0zk7ZfwOYS8GWYFNSykwdfapt7yQc4ikZytemBu+QyVObzBHJMwYg==" 
+					crossorigin="anonymous">
+	</script>
+	
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/css/uikit.min.css" />
+
+	<!-- UIkit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit-icons.min.js"></script>
+
+
 	<script src="./js/templates.js"></script>
 	<script src="./js/keys.js"></script>
 	<script src="./js/ws.js"></script>
@@ -85,15 +64,10 @@
 		document.querySelector(".app-root").innerHTML = html	
 
 		function fct(keyCode){
-			console.log(keyCode)
+			console.log(`[${new Date().toISOString()}] Key Pressed: ${keyCode}`)
 			ws.applyKey(keyCode)
 		}
 
-		// document.querySelector("button").addEventListener('click', ()=>{
-		// 	sendMessage("hhello")
-		// 	.then((res)=>console.log(res))
-		// 	.catch((res)=>console.error(res))
-		// })
 	</script>
   
 </body>

@@ -3,17 +3,17 @@
 SET MODE=
 REM SET MODE=DELETE
 
-SET ip_address=http://192.168.0.199
+SET ip_address=http://192.168.0.200
 REM SET ip_address=http://192.168.0.151
 
 SET upload_files[0]=index.html
 SET upload_files[1]=favicon.ico
-SET upload_files[2]=launcher-icon-2x.png
-SET upload_files[3]=launcher-icon-3x.png
-SET upload_files[4]=launcher-icon-4x.png
-SET upload_files[5]=launcher-icon-5x.png
-SET upload_files[6]=manifest.json
-SET upload_files[7]=sw.js
+REM SET upload_files[2]=launcher-icon-2x.png
+REM SET upload_files[3]=launcher-icon-3x.png
+REM SET upload_files[4]=launcher-icon-4x.png
+REM SET upload_files[5]=launcher-icon-5x.png
+REM SET upload_files[6]=manifest.json
+REM SET upload_files[7]=sw.js
 
 
 SET /a "x=0"
@@ -40,7 +40,7 @@ If DEFINED upload_files[%x%] (
 
 
 SET upload_files_css[0]=index.css
-SET upload_files_css[1]=uikit.min.css
+REM SET upload_files_css[1]=uikit.min.css
 
 CD ./css
 SET /a "x=0"
@@ -75,14 +75,12 @@ CD ..
 
 
 
-SET upload_files_js[0]=index.css
-SET upload_files_js[1]=uikit.min.css
-SET upload_files_js[2]=ws.js
-SET upload_files_js[3]=templates.js
-SET upload_files_js[4]=keys.js
-SET upload_files_js[5]=mustache.min.js
-SET upload_files_js[6]=uikit.min.js
-SET upload_files_js[7]=uikit-icons.min.js
+SET upload_files_js[0]=ws.js
+SET upload_files_js[1]=templates.js
+SET upload_files_js[2]=keys.js
+REM SET upload_files_js[3]=mustache.min.js
+REM SET upload_files_js[4]=uikit.min.js
+REM SET upload_files_js[5]=uikit-icons.min.js
 
 CD ./js
 SET /a "x=0"
