@@ -1,0 +1,25 @@
+{
+  "name": "home-remote-ui",
+  "version": "1.0.0",
+  "description": "Home Remote UI",
+  "main": ".",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KMurphs/home-remote-control.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KMurphs/home-remote-control/issues"
+  },
+  "homepage": "https://github.com/KMurphs/home-remote-control#readme",
+  "devDependencies": {
+    "serve": "^11.3.2"
+  }
+}

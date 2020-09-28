@@ -43,20 +43,6 @@ Object.freeze(Key)
 
 
 const remoteKeys = {
-	main: [
-    { code: "KEY_TOOLS",	scaleFactor: 1,		cssClass: "",		icon: "settings",              text: "Tool",		 },
-		{ code: "KEY_UP",			scaleFactor: 1,		cssClass: "",		icon: "triangle-up",      		text: "Up",			 },
-    { code: "KEY_INFO",		scaleFactor: 1,		cssClass: "",		icon: "info",               	text: "Info",		 },
-    { code: "KEY_LEFT",		scaleFactor: 1,		cssClass: "",		icon: "triangle-left",         text: "Left",		 },
-    { code: "KEY_ENTER",	scaleFactor: 1,		cssClass: "",		icon: "sign-in",							text: "Enter",		},
-    { code: "KEY_RIGHT",	scaleFactor: 1,		cssClass: "",		icon: "triangle-right",        text: "Right",		},
-    { code: "KEY_RETURN",	scaleFactor: 1,		cssClass: "",		icon: "sign-out",          text: "Return",	 },
-    { code: "KEY_DOWN",		scaleFactor: 1,		cssClass: "",		icon: "triangle-down",    text: "Down",		 },
-    { code: "KEY_RETURN",	scaleFactor: 1,		cssClass: "",		icon: "close",              text: "Exit",		 },
-    { code: "",						scaleFactor: 1,		cssClass: "",		icon: "",                   text: "",				 },
-    { code: "KEY_HOME",		scaleFactor: 1,		cssClass: "",		icon: "home",               text: "Home",		 },
-    { code: "",						scaleFactor: 1,		cssClass: "",		icon: "",                   text: "",				 }
-  ],
   management: [
     { code: "KEY_POWER",	  scaleFactor: 1,		cssClass: "",		icon: "lock",              text: "OFF/ON",		 },
 		{ code: "KEY_MENU",		  scaleFactor: 1,		cssClass: "",		icon: "menu",      					text: "Menu",			 },
@@ -64,6 +50,28 @@ const remoteKeys = {
     { code: "KEY_DTV",		  scaleFactor: 1,		cssClass: "",		icon: "arrow_left",         text: "DTV",		 },
     { code: "KEY_HDMI",		  scaleFactor: 1,		cssClass: "",		icon: "center_focus_strong",text: "HDMI",		},
     { code: "KEY_CONTENTS",	scaleFactor: 1,		cssClass: "",		icon: "arrow_right",        text: "CONTENTS",		},
+  ],
+	main: [
+    { code: "KEY_TOOLS",	scaleFactor: 1,		cssClass: "",		                icon: "settings",               text: "Tool",		 },
+		{ code: "KEY_UP",			scaleFactor: 1,		cssClass: "",		                icon: "triangle-up",      	  	text: "Up",			 },
+    { code: "KEY_INFO",		scaleFactor: 1,		cssClass: "",		                icon: "info",               	  text: "Info",		 },
+    { code: "KEY_LEFT",		scaleFactor: 1,		cssClass: "",		                icon: "triangle-left",          text: "Left",		 },
+    { code: "KEY_ENTER",	scaleFactor: 1,		cssClass: "",		                icon: "sign-in",							  text: "Enter",		},
+    { code: "KEY_RIGHT",	scaleFactor: 1,		cssClass: "",		                icon: "triangle-right",         text: "Right",		},
+    { code: "KEY_RETURN",	scaleFactor: 1,		cssClass: "rotate-icon-180",		icon: "sign-out",               text: "Return",	 },
+    { code: "KEY_DOWN",		scaleFactor: 1,		cssClass: "",		                icon: "triangle-down",          text: "Down",		 },
+    { code: "KEY_RETURN",	scaleFactor: 1,		cssClass: "",		                icon: "close",                  text: "Exit",		 },
+    { code: "",						scaleFactor: 1,		cssClass: "",		                icon: "",                       text: "",				 },
+    { code: "KEY_HOME",		scaleFactor: 1,		cssClass: "",		                icon: "home",                   text: "Home",		 },
+    { code: "",						scaleFactor: 1,		cssClass: "",		                icon: "",                       text: "",				 }
+  ],
+  volume_channel: [
+    { code: "KEY_VOLDOWN",	scaleFactor: 1,		cssClass: "",		icon: "minus",              text: "Vol Down",		 },
+    { code: "KEY_MUTE",			scaleFactor: 1,		cssClass: "",		icon: "microphone",         text: "Mute",		 },
+    { code: "KEY_VOLUP",		scaleFactor: 1,		cssClass: "",		icon: "plus",              	text: "Vol Up",		 },
+    { code: "KEY_CHUP",			scaleFactor: 1,		cssClass: "",		icon: "minus",              text: "Prev Ch.",		 },
+    { code: "KEY_CH_LIST",	scaleFactor: 1,		cssClass: "",		icon: "list",              	text: "Ch. List",		 },
+		{ code: "KEY_CHDOWN",		scaleFactor: 1,		cssClass: "",		icon: "plus",              	text: "Next Ch.",		 },
   ],
   numeric: [
     { code: "KEY_1",				scaleFactor: 1,		cssClass: "",		icon: "build",              text: "1",		 },
@@ -86,13 +94,5 @@ const remoteKeys = {
     { code: "",							scaleFactor: 1,		cssClass: "",		icon: "build",              text: "",		 },
     { code: "KEY_YELLOW",		scaleFactor: 1,		cssClass: "",		icon: "build",              text: "YELLOW",		 },
 		{ code: "KEY_BLUE",			scaleFactor: 1,		cssClass: "",		icon: "build",              text: "BLUE",		 },
-  ],
-  volume_channel: [
-    { code: "KEY_VOLDOWN",	scaleFactor: 1,		cssClass: "",		icon: "minus",              text: "Vol Down",		 },
-    { code: "KEY_MUTE",			scaleFactor: 1,		cssClass: "",		icon: "microphone",         text: "Mute",		 },
-    { code: "KEY_VOLUP",		scaleFactor: 1,		cssClass: "",		icon: "plus",              	text: "Vol Up",		 },
-    { code: "KEY_CHUP",			scaleFactor: 1,		cssClass: "",		icon: "minus",              text: "Prev Ch.",		 },
-    { code: "KEY_CH_LIST",	scaleFactor: 1,		cssClass: "",		icon: "list",              	text: "Ch. List",		 },
-		{ code: "KEY_CHDOWN",		scaleFactor: 1,		cssClass: "",		icon: "plus",              	text: "Next Ch.",		 },
   ]
 }

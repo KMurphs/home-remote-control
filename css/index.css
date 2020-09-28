@@ -1,3 +1,8 @@
+
+.app-root{
+  margin-top: 5rem;
+}
+
 .remote-group{
   --remote-button-width: 100px;
   --remote-button-height: 100px;
@@ -48,4 +53,9 @@
 }
 .remote-group .remote-group-item button{
   padding: 0;
+}
+
+
+.rotate-icon-180 .uk-icon{ 
+  transform: rotate(180deg);
 }

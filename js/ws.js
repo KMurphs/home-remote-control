@@ -1,6 +1,6 @@
 
 
-function DeviceWebsocket(deviceIP = "192.168.0.200", devicePort = 8001, clientName = "samsung", useWebsocketSecure = false){
+function DeviceWebsocket(deviceIP = "192.168.0.190", devicePort = 8001, clientName = "samsung", useWebsocketSecure = false){
 	if(!deviceIP) throw new Error("Device Object needs a valid IP Address")
 	if(!devicePort) throw new Error("Device Object needs a valid Port")
 	this.deviceIP = deviceIP;
