@@ -1,0 +1,4 @@
+Fix led flash during download/upload
+Make app as PWA
+Default "/" endpoint to "/index.html". Move current "/" endpoint to "/manage"
+Use static ip address 
