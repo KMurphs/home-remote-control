@@ -9,13 +9,15 @@
   --margin-y: .2rem; 
   --margin-x: .2rem; 
   margin: auto;
-  width: calc(3 * var(--remote-button-width) + 6 * var(--margin-x) + 5px);
+  width: 326px; /*Fallback*/
+  width: calc(3 * var(--remote-button-width) + 6 * var(--margin-x) + 5px) !important;
 }
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
   .remote-group{
     --remote-button-width: 120px;
     --remote-button-height: 120px;
+    width: 386px; /*Fallback*/
   }
 }
 
@@ -40,15 +42,21 @@
   .remote-group{
     --remote-button-width: 100px;
     --remote-button-height: 100px;
+    width: 326px; /*Fallback*/
   }
 }
 
 .remote-group .remote-group-item{
+  width: 100px;
   width: var(--remote-button-width);
-  height: var(--remote-button-height);
+  height: 100px;
+  margin: .2rem .2rem;
   margin: var(--margin-y) var(--margin-x);
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr;
   grid-template-rows: 1fr;
 }
 .remote-group .remote-group-item button{

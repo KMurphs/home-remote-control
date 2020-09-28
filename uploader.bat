@@ -99,3 +99,4 @@ If DEFINED upload_files_js[%x%] (
 	SET /a "x+=1"
 	GOTO :SymLoop3
 )
+CD ..

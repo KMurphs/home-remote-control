@@ -50,22 +50,22 @@
 	<script src="./js/keys.js"></script>
 	<script src="./js/ws.js"></script>
 	<script>
-		const ws = new DeviceWebsocket()
+		const ws = new DeviceWebsocket();
 		ws.connect();
 		const data = {
-			'groups': Object.keys(remoteKeys).map(objKey => {
+			'groups': Object.keys(remoteKeys).map(function(objKey){
 				let res = { 'name': objKey }; 
 				res['entries'] = remoteKeys[objKey]; 
 				return res;
 			})
 		}
-		console.log(data)
+		console.log(data);
 		html = Mustache.render(template, data);
-		document.querySelector(".app-root").innerHTML = html	
+		document.querySelector(".app-root").innerHTML = html	;
 
 		function fct(keyCode){
-			console.log(`[${new Date().toISOString()}] Key Pressed: ${keyCode}`)
-			ws.applyKey(keyCode)
+			console.log("[" + new Date().toISOString() + "] Key Pressed: " + keyCode);
+			ws.applyKey(keyCode);
 		}
 
 	</script>
