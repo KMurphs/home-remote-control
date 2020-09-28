@@ -14,8 +14,11 @@
 </head>
 <body>
 
+	<noscript>This Application requires Javascript to Run</noscript>
 	
 	<section class="app-root">
+		<div class="lds-facebook"><div></div><div></div><div></div></div>
+		<div>Loading Remote Control</div> 
 	</section>
 
 
@@ -51,7 +54,11 @@
 	<script src="./js/ws.js"></script>
 	<script>
 		const ws = new DeviceWebsocket();
-		ws.connect();
+		ws.connect(function(){
+				console.warn("Resetting Connection to Device");
+				ws.reconnect();
+			}
+		)
 		const data = {
 			'groups': Object.keys(remoteKeys).map(function(objKey){
 				let res = { 'name': objKey }; 
@@ -61,7 +68,8 @@
 		}
 		console.log(data);
 		html = Mustache.render(template, data);
-		document.querySelector(".app-root").innerHTML = html	;
+		document.querySelector(".app-root").innerHTML = html;
+
 
 		function fct(keyCode){
 			console.log("[" + new Date().toISOString() + "] Key Pressed: " + keyCode);

@@ -61,9 +61,9 @@ const remoteKeys = {
     { code: "KEY_RETURN",	scaleFactor: 1,		cssClass: "rotate-icon-180",		icon: "sign-out",               text: "Return",	 },
     { code: "KEY_DOWN",		scaleFactor: 1,		cssClass: "",		                icon: "triangle-down",          text: "Down",		 },
     { code: "KEY_RETURN",	scaleFactor: 1,		cssClass: "",		                icon: "close",                  text: "Exit",		 },
-    { code: "",						scaleFactor: 1,		cssClass: "",		                icon: "",                       text: "",				 },
+    { code: "",						scaleFactor: 1,		cssClass: "d-none",		                icon: "",                       text: "",				 },
     { code: "KEY_HOME",		scaleFactor: 1,		cssClass: "",		                icon: "home",                   text: "Home",		 },
-    { code: "",						scaleFactor: 1,		cssClass: "",		                icon: "",                       text: "",				 }
+    { code: "",						scaleFactor: 1,		cssClass: "d-none",		                icon: "",                       text: "",				 }
   ],
   volume_channel: [
     { code: "KEY_VOLDOWN",	scaleFactor: 1,		cssClass: "",		icon: "minus",              text: "Vol Down",		 },
@@ -83,15 +83,15 @@ const remoteKeys = {
     { code: "KEY_7",				scaleFactor: 1,		cssClass: "",		icon: "build",              text: "7",		 },
     { code: "KEY_8",				scaleFactor: 1,		cssClass: "",		icon: "build",              text: "8",		 },
     { code: "KEY_9",				scaleFactor: 1,		cssClass: "",		icon: "build",              text: "9",		 },
-    { code: "",							scaleFactor: 1,		cssClass: "",		icon: "build",              text: "",		 },
+    { code: "",							scaleFactor: 1,		cssClass: "d-none",		icon: "build",              text: "",		 },
     { code: "KEY_0",				scaleFactor: 1,		cssClass: "",		icon: "build",              text: "0",		 },
-    { code: "",							scaleFactor: 1,		cssClass: "",		icon: "build",              text: "",		 },
+    { code: "",							scaleFactor: 1,		cssClass: "d-none",		icon: "build",              text: "",		 },
 	],
   colored: [
-    { code: "",							scaleFactor: 1,		cssClass: "",		icon: "build",              text: "",		 },
+    { code: "",							scaleFactor: 1,		cssClass: "d-none",		icon: "build",              text: "",		 },
     { code: "KEY_RED",			scaleFactor: 1,		cssClass: "",		icon: "build",              text: "RED",		 },
     { code: "KEY_GREEN",		scaleFactor: 1,		cssClass: "",		icon: "build",              text: "GREEN",		 },
-    { code: "",							scaleFactor: 1,		cssClass: "",		icon: "build",              text: "",		 },
+    { code: "",							scaleFactor: 1,		cssClass: "d-none",		icon: "build",              text: "",		 },
     { code: "KEY_YELLOW",		scaleFactor: 1,		cssClass: "",		icon: "build",              text: "YELLOW",		 },
 		{ code: "KEY_BLUE",			scaleFactor: 1,		cssClass: "",		icon: "build",              text: "BLUE",		 },
   ]
