@@ -1,7 +1,7 @@
 #include "timer_tick.h"
 
 
-
+TaskHandle_t timer_tick_Handle;
 
 /*
  * Timer group0 ISR handler
@@ -85,6 +85,14 @@ static void example_tg0_timer_init(int timer_idx,
     timer_start(TIMER_GROUP_0, timer_idx);
 }
 
+
+
+void example_tg0_timer_resume(){
+    timer_start(TIMER_GROUP_0, TIMER_0);
+}
+void example_tg0_timer_pause(){
+    timer_pause(TIMER_GROUP_0, TIMER_0);
+}
 /*
  * The main task of this example program
  */
@@ -104,11 +112,25 @@ static void timer_example_evt_task(void *arg)
     }
 }
 
-
+void reset_timer_tick(){
+    reconfigure_heartbeat_led(HEARTBEAT_LED_ON_SECS, HEARTBEAT_LED_PERIOD_SECS);
+    example_tg0_timer_init(TIMER_0, TICK_100_MS,    TIMER_TICK_INTERVAL_SEC);
+    xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 5, &timer_tick_Handle);
+}
 void init_timer_tick(){
     timer_queue = xQueueCreate(10, sizeof(timer_event_t));
+    reconfigure_heartbeat_led(HEARTBEAT_LED_ON_SECS, HEARTBEAT_LED_PERIOD_SECS);
     example_tg0_timer_init(TIMER_0, TICK_100_MS,    TIMER_TICK_INTERVAL_SEC);
-    xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 5, NULL);
+    xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 5, &timer_tick_Handle);
+}
+void destroy_timer_tick(){
+    // reconfigure_heartbeat_led(0, HEARTBEAT_LED_PERIOD_SECS);
+    force_state_heartbeat_led(true);
+    example_tg0_timer_pause();
+    if( timer_tick_Handle != NULL ){
+        vTaskDelete( timer_tick_Handle );
+        timer_tick_Handle = NULL;
+    }
 }
 
 // https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html

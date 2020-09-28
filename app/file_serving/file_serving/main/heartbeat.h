@@ -12,6 +12,7 @@
 void init_heartbeat(float on_secs, float period_secs);
 void heartbeat_handler();
 void reconfigure_heartbeat_led(float on_secs, float period_secs);
+void force_state_heartbeat_led(bool state);
 
 typedef struct {
     int gpio_pin;

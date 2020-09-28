@@ -21,13 +21,15 @@
 #include "esp_spiffs.h"
 #include "esp_http_server.h"
 
+#include "timer_tick.h"
+
 /* Max length a file path can have on storage */
 #define FILE_PATH_MAX (ESP_VFS_PATH_MAX + CONFIG_SPIFFS_OBJ_NAME_LEN)
 
 /* Max size of an individual file. Make sure this
  * value is same as that set in upload_script.html */
-#define MAX_FILE_SIZE   (300*1024) // 200 KB
-#define MAX_FILE_SIZE_STR "300KB"
+#define MAX_FILE_SIZE   (310*1024) // 200 KB
+#define MAX_FILE_SIZE_STR "310KB"
 
 /* Scratch buffer size */
 #define SCRATCH_BUFSIZE  8192
@@ -210,6 +212,8 @@ static const char* get_path_from_uri(char *dest, const char *base_path, const ch
 /* Handler to download a file kept on the server */
 static esp_err_t download_get_handler(httpd_req_t *req)
 {
+    destroy_timer_tick();
+
     char filepath[FILE_PATH_MAX];
     FILE *fd = NULL;
     struct stat file_stat;
@@ -220,11 +224,13 @@ static esp_err_t download_get_handler(httpd_req_t *req)
         ESP_LOGE(TAG, "Filename is too long");
         /* Respond with 500 Internal Server Error */
         httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Filename too long");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
     /* If name has trailing '/', respond with directory contents */
     if (filename[strlen(filename) - 1] == '/') {
+        reset_timer_tick();
         return http_resp_dir_html(req, filepath);
     }
 
@@ -239,6 +245,7 @@ static esp_err_t download_get_handler(httpd_req_t *req)
         ESP_LOGE(TAG, "Failed to stat file : %s", filepath);
         /* Respond with 404 Not Found */
         httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "File does not exist");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -247,11 +254,13 @@ static esp_err_t download_get_handler(httpd_req_t *req)
         ESP_LOGE(TAG, "Failed to read existing file : %s", filepath);
         /* Respond with 500 Internal Server Error */
         httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to read existing file");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
     ESP_LOGI(TAG, "Sending file : %s (%ld bytes)...", filename, file_stat.st_size);
     set_content_type_from_file(req, filename);
+    httpd_resp_set_hdr(req, "Cache-Control", "public, max-age=604800, immutable");
 
     /* Retrieve the pointer to scratch buffer for temporary storage */
     char *chunk = ((struct file_server_data *)req->user_ctx)->scratch;
@@ -269,7 +278,9 @@ static esp_err_t download_get_handler(httpd_req_t *req)
                 httpd_resp_sendstr_chunk(req, NULL);
                 /* Respond with 500 Internal Server Error */
                 httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to send file");
-               return ESP_FAIL;
+
+                reset_timer_tick();
+                return ESP_FAIL;
            }
         }
 
@@ -282,12 +293,19 @@ static esp_err_t download_get_handler(httpd_req_t *req)
 
     /* Respond with an empty chunk to signal HTTP response completion */
     httpd_resp_send_chunk(req, NULL, 0);
+
+    // example_tg0_timer_resume();
+    // init_timer_tick();
+
+    reset_timer_tick();
     return ESP_OK;
 }
 
 /* Handler to upload a file onto the server */
 static esp_err_t upload_post_handler(httpd_req_t *req)
 {
+    destroy_timer_tick();
+
     char filepath[FILE_PATH_MAX];
     FILE *fd = NULL;
     struct stat file_stat;
@@ -299,6 +317,7 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
     if (!filename) {
         /* Respond with 500 Internal Server Error */
         httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Filename too long");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -306,6 +325,7 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
     if (filename[strlen(filename) - 1] == '/') {
         ESP_LOGE(TAG, "Invalid filename : %s", filename);
         httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Invalid filename");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -313,6 +333,7 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
         ESP_LOGE(TAG, "File already exists : %s", filepath);
         /* Respond with 400 Bad Request */
         httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "File already exists");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -325,6 +346,7 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
                             MAX_FILE_SIZE_STR "!");
         /* Return failure to close underlying connection else the
          * incoming file content will keep the socket busy */
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -333,6 +355,7 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
         ESP_LOGE(TAG, "Failed to create file : %s", filepath);
         /* Respond with 500 Internal Server Error */
         httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to create file");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -364,6 +387,7 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
             ESP_LOGE(TAG, "File reception failed!");
             /* Respond with 500 Internal Server Error */
             httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to receive file");
+            reset_timer_tick();
             return ESP_FAIL;
         }
 
@@ -377,6 +401,7 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
             ESP_LOGE(TAG, "File write failed!");
             /* Respond with 500 Internal Server Error */
             httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to write file to storage");
+            reset_timer_tick();
             return ESP_FAIL;
         }
 
@@ -393,12 +418,19 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
     httpd_resp_set_status(req, "303 See Other");
     httpd_resp_set_hdr(req, "Location", "/");
     httpd_resp_sendstr(req, "File uploaded successfully");
+
+    // example_tg0_timer_resume();
+    // init_timer_tick();
+    reset_timer_tick();
+
     return ESP_OK;
 }
 
 /* Handler to delete a file from the server */
 static esp_err_t delete_post_handler(httpd_req_t *req)
 {
+    destroy_timer_tick();
+
     char filepath[FILE_PATH_MAX];
     struct stat file_stat;
 
@@ -409,6 +441,7 @@ static esp_err_t delete_post_handler(httpd_req_t *req)
     if (!filename) {
         /* Respond with 500 Internal Server Error */
         httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Filename too long");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -416,6 +449,7 @@ static esp_err_t delete_post_handler(httpd_req_t *req)
     if (filename[strlen(filename) - 1] == '/') {
         ESP_LOGE(TAG, "Invalid filename : %s", filename);
         httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Invalid filename");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -423,6 +457,7 @@ static esp_err_t delete_post_handler(httpd_req_t *req)
         ESP_LOGE(TAG, "File does not exist : %s", filename);
         /* Respond with 400 Bad Request */
         httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "File does not exist");
+        reset_timer_tick();
         return ESP_FAIL;
     }
 
@@ -434,6 +469,11 @@ static esp_err_t delete_post_handler(httpd_req_t *req)
     httpd_resp_set_status(req, "303 See Other");
     httpd_resp_set_hdr(req, "Location", "/");
     httpd_resp_sendstr(req, "File deleted successfully");
+
+    // example_tg0_timer_resume();
+    // init_timer_tick();
+    reset_timer_tick();
+
     return ESP_OK;
 }
 

@@ -34,7 +34,13 @@ typedef struct {
 
 xQueueHandle timer_queue;
 
+
 void init_timer_tick();
+void destroy_timer_tick();
+void example_tg0_timer_resume();
+void reset_timer_tick();
+// void example_tg0_timer_pause();
+// void example_tg0_timer_resume();
 // void IRAM_ATTR timer_group0_isr(void *para);
 // static void example_tg0_timer_init(int timer_idx, bool auto_reload, double timer_interval_sec);
 // static void timer_example_evt_task(void *arg);

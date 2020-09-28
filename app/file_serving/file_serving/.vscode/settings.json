@@ -11,6 +11,7 @@
   "idf.portWin": "COM7",
   "files.associations": {
     "*.py": "python",
-    "heartbeat.h": "c"
+    "heartbeat.h": "c",
+    "timer_tick.h": "c"
   }
 }

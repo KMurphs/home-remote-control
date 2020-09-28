@@ -18,11 +18,15 @@ void heartbeat_handler(){
 
 }   
 
+void force_state_heartbeat_led(bool state){
+    gpio_set_level(heartbeat_control.gpio_pin, state ? 1 : 0);
+}
 
 void reconfigure_heartbeat_led(float on_secs, float period_secs){
     heartbeat_control.on_ticks      = on_secs / TIMER_TICK_INTERVAL_SEC;  
     heartbeat_control.period_ticks  = period_secs / TIMER_TICK_INTERVAL_SEC;     
     heartbeat_control.tick_counter  = 0;
+    gpio_set_level(heartbeat_control.gpio_pin, 0);
 }
 
 

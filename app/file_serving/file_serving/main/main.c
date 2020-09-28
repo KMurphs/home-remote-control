@@ -20,12 +20,13 @@
 
 #include "heartbeat.h"
 #include "timer_tick.h"
+#include "wifi.h"
 
 /* This example demonstrates how to create file server
  * using esp_http_server. This file has only startup code.
  * Look in file_server.c for the implementation */
 
-static const char *TAG="example";
+static const char *TAG="file_server";
 
 /* Function to initialize SPIFFS */
 static esp_err_t init_spiffs(void)
@@ -73,21 +74,29 @@ void app_main(void)
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     
-    // init_heartbeat(HEARTBEAT_LED_ON_SECS, HEARTBEAT_LED_PERIOD_SECS/2);
-    // init_timer_tick();
+    init_heartbeat(HEARTBEAT_LED_ON_SECS, HEARTBEAT_LED_PERIOD_SECS/2);
+    init_timer_tick();
 
 
+
+#ifdef STATIC_IP_ADDRESS
+    initialize_wifi_sta();
+#else
     /* This helper function configures Wi-Fi or Ethernet, as selected in menuconfig.
      * Read "Establishing Wi-Fi or Ethernet Connection" section in
      * examples/protocols/README.md for more information about this function.
      */
     ESP_ERROR_CHECK(example_connect());
+#endif
+
+
+
 
     /* Initialize file storage */
     ESP_ERROR_CHECK(init_spiffs());
     
 
-    // reconfigure_heartbeat_led(HEARTBEAT_LED_ON_SECS, HEARTBEAT_LED_PERIOD_SECS);
+    reconfigure_heartbeat_led(HEARTBEAT_LED_ON_SECS, HEARTBEAT_LED_PERIOD_SECS);
 
     /* Start the file server */
     ESP_ERROR_CHECK(start_file_server("/spiffs"));

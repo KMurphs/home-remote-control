@@ -3,6 +3,20 @@
 static const char *TAG = "wifi station";
 char *ip = "";
 
+
+
+void restart_module(){
+
+  // Restart module
+  for (int i = 10; i >= 0; i--) {
+    printf("\nRestarting in %d seconds...", i);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+  }
+  printf("\nRestarting now.");
+  fflush(stdout);
+  esp_restart();
+}
+
 static void event_handler(void* arg, esp_event_base_t event_base,
                                 int32_t event_id, void* event_data)
 {
@@ -38,9 +52,9 @@ void initialize_wifi_sta(void)
     ESP_LOGI(TAG, "ESP_WIFI_MODE_STA");
     s_wifi_event_group = xEventGroupCreate();
 
-    ESP_ERROR_CHECK(esp_netif_init());
+    // ESP_ERROR_CHECK(esp_netif_init());
 
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
+    // ESP_ERROR_CHECK(esp_event_loop_create_default());
     
 
 #ifdef STATIC_IP_ADDRESS
@@ -50,9 +64,9 @@ void initialize_wifi_sta(void)
     IP4_ADDR(&ip_info.ip, 192, 168, 0, 199);
    	IP4_ADDR(&ip_info.gw, 192, 168, 0, 1);
    	IP4_ADDR(&ip_info.netmask, 255, 255, 255, 0);
-    sp_netif_set_ip_info(my_sta, &ip_info);
+    esp_netif_set_ip_info(my_sta, &ip_info);
 #else
-   esp_netif_create_default_wifi_sta();
+    esp_netif_create_default_wifi_sta();
 #endif
 
 
