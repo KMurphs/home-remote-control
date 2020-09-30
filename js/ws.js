@@ -24,9 +24,11 @@ DeviceWebsocket.prototype.connect = function(){//(onError, onMessage, onOpen, on
 	this.ws = new WebSocket( (this.useWebsocketSecure ? 'wss' : 'ws') + "://" + this.deviceIP + ":" + this.devicePort + "/api/v2/channels/samsung.remote.control?name=" + btoa(this.clientName) );
 		
 	this.ws.onopen = function(evt) {
+		console.log('Socket is established with remote device');
 		// if(onOpen) onOpen(evt.data);
 	};
 	this.ws.onmessage = function(evt) {
+		console.log('Remote Device sent: ', evt);
 		// if(onMessage) onMessage(evt.data);
 	};  
 	this.ws.onclose = function(evt) {

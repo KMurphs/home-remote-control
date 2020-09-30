@@ -6,6 +6,11 @@ REM SET MODE=DELETE
 SET ip_address=http://192.168.0.200
 REM SET ip_address=http://192.168.0.151
 
+REM curl -X POST http://192.168.0.200:80/delete/js/ws.js
+REM curl -X POST --data-binary @js/ws.js http://192.168.0.200:80/upload/js/ws.js
+
+
+
 SET upload_files[0]=index.html
 SET upload_files[1]=favicon.ico
 REM SET upload_files[2]=launcher-icon-2x.png
@@ -32,7 +37,6 @@ If DEFINED upload_files[%x%] (
 	SET /a "x+=1"
 	GOTO :SymLoop1
 )
-
 
 
 
