@@ -9,6 +9,54 @@
 
 	<link rel="stylesheet" href="./css/index.css">
 	<link rel="shortcut icon" href="./favicon.ico">
+	<style>
+
+		.app-root{
+			margin-top: 5rem;
+			text-align: center;
+		}
+
+		/* https://loading.io/css/ */
+		.lds-facebook {
+			display: inline-block;
+			position: relative;
+			width: 80px;
+			height: 80px;
+		}
+		.lds-facebook div {
+			display: inline-block;
+			position: absolute;
+			left: 8px;
+			width: 16px;
+			background: #fff;
+			animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+			background-color: #eee;
+		}
+		.lds-facebook div:nth-child(1) {
+			left: 8px;
+			animation-delay: -0.24s;
+		}
+		.lds-facebook div:nth-child(2) {
+			left: 32px;
+			animation-delay: -0.12s;
+		}
+		.lds-facebook div:nth-child(3) {
+			left: 56px;
+			animation-delay: 0;
+		}
+		@keyframes lds-facebook {
+			0% {
+				top: 8px;
+				height: 64px;
+			}
+			50%, 100% {
+				top: 24px;
+				height: 32px;
+			}
+		}
+
+
+	</style>
 
   <title>Home Remote</title>
 </head>
@@ -53,22 +101,30 @@
 	<script src="./js/keys.js"></script>
 	<script src="./js/ws.js"></script>
 	<script>
-		const ws = new DeviceWebsocket();
-		ws.connect(function(){
-				console.warn("Resetting Connection to Device");
-				ws.reconnect();
+		var ws = null;
+		window.addEventListener("load", ()=>{
+
+
+			ws = new DeviceWebsocket();
+			ws.connect();
+
+
+			const data = {
+				'groups': Object.keys(remoteKeys).map(function(objKey){
+					let res = { 'name': objKey }; 
+					res['entries'] = remoteKeys[objKey]; 
+					return res;
+				})
 			}
-		)
-		const data = {
-			'groups': Object.keys(remoteKeys).map(function(objKey){
-				let res = { 'name': objKey }; 
-				res['entries'] = remoteKeys[objKey]; 
-				return res;
-			})
-		}
-		console.log(data);
-		html = Mustache.render(template, data);
-		document.querySelector(".app-root").innerHTML = html;
+			console.log(data);
+
+
+			html = Mustache.render(template, data);
+			document.querySelector(".app-root").innerHTML = html;
+
+
+		}, false);
+
 
 
 		function fct(keyCode){

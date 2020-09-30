@@ -1,4 +1,5 @@
-
+// https://stackoverflow.com/questions/61137232/websockets-closing-unexpectedly
+// https://stackoverflow.com/questions/22431751/websocket-how-to-automatically-reconnect-after-it-dies
 
 function DeviceWebsocket(deviceIP, devicePort, clientName, useWebsocketSecure){
 	if(!deviceIP) deviceIP = "192.168.0.190";
@@ -13,27 +14,32 @@ function DeviceWebsocket(deviceIP, devicePort, clientName, useWebsocketSecure){
 	console.info(this.deviceIP, this.devicePort, this.clientName);
 }
 DeviceWebsocket.prototype.version = "1.0";
-DeviceWebsocket.prototype.connect = function(onError, onMessage, onOpen, onClose){
+DeviceWebsocket.prototype.connect = function(){//(onError, onMessage, onOpen, onClose){
 
-	if(!onError) onError = null;
-	if(!onMessage) onMessage = null;
-	if(!onOpen) onOpen = null;
-	if(!onClose) onClose = null;
+	// if(!onError) onError = null;
+	// if(!onMessage) onMessage = null;
+	// if(!onOpen) onOpen = null;
+	// if(!onClose) onClose = null;
 	
 	this.ws = new WebSocket( (this.useWebsocketSecure ? 'wss' : 'ws') + "://" + this.deviceIP + ":" + this.devicePort + "/api/v2/channels/samsung.remote.control?name=" + btoa(this.clientName) );
 		
 	this.ws.onopen = function(evt) {
-		if(onOpen) onOpen(evt.data);
+		// if(onOpen) onOpen(evt.data);
 	};
 	this.ws.onmessage = function(evt) {
-		if(onMessage) onMessage(evt.data);
+		// if(onMessage) onMessage(evt.data);
 	};  
 	this.ws.onclose = function(evt) {
-		if(onClose) onClose(evt.data);
+		// if(onClose) onClose(evt.data);
+    console.log('Socket is closed. Reconnect will be attempted in 1 second.', evt.reason);
+    setTimeout(function() {
+      this.ws.connect();
+    }, 1000);
 	}
 	this.ws.onerror = function(evt) {
-		if(onError) onError(evt.data);
-		else throw new Error(evt.data);
+		// if(onError) onError(evt.data);
+		// else throw new Error(evt.data);
+		this.ws.close();
 	}
 }
 DeviceWebsocket.prototype.reconnect = function(){
