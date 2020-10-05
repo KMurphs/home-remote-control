@@ -1,0 +1,5 @@
+const activateMainViewElmt = document.querySelector("#activate-main-view")
+const activateKeypadViewElmt = document.querySelector("#activate-keypad-view")
+const mainViewElmt = document.querySelector(".app-content--main-view")
+const keypadViewElmt = document.querySelector(".app-content--with-keypad")
+const loaderElmt = document.querySelector("#app-loader")

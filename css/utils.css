@@ -48,7 +48,7 @@
   width: 3.5rem;
   border-radius: 0;
 }
-.app-button--nav--active{
+.app-button--nav.app-button--nav--active{
   background-color: #b00909;
 }
 
