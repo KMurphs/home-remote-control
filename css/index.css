@@ -1,12 +1,14 @@
 body{
   background-color: #090909;
   font-size: 16px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 *, *::before, *::after{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 
 .section{
@@ -44,7 +46,53 @@ body{
   justify-content: space-between;
   padding: 0 1.3rem;
   width: 100%;
+  align-items: stretch;
 }
 .app-nav__content button{
   font-size: 1.2rem;
+}
+
+.section-bottom > div {
+  margin: 0;
+}
+.section-bottom-plus > div:nth-child(2),
+.section-bottom > div:nth-child(2) {
+  width: 50vw;
+  position: relative;
+}
+.section-bottom > div:nth-child(2)::before,
+.section-bottom > div:nth-child(2)::after{
+  content: "";
+  height: 1px;
+  background-color:  #222;
+  bottom: 50%;
+  position: absolute;
+  width: 30%;
+}
+.section-bottom > div:nth-child(2)::before{
+  left: 0;
+}
+.section-bottom > div:nth-child(2)::after{
+  right: 0;
+}
+
+
+
+.app-content--with-keypad{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.section-keypad{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0.5rem 1.5rem;
+}
+.app-content--with-keypad .section-bottom{
+  color: white;
+}
+.app-content--with-keypad .section-bottom.section-channels{
+  margin-bottom: -1.7rem;
+  color: white;
 }

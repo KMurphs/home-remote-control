@@ -21,6 +21,7 @@
 			display: grid;
 			grid-template-rows: 1fr 3rem;
 			grid-template-columns: 1fr;
+			overflow: hidden;
 		}
 
 		.app-content{
@@ -32,6 +33,8 @@
 		
 		.app-nav{
 			background-color: #cc0001;
+			/* flex-direction: column; */
+			align-items: stretch !important;
 		}
 
 		/* https://loading.io/css/ */
@@ -91,12 +94,12 @@
 		</div>
 
 
-		<div class="app-content">
+		<div class="app-content d-none">
 			<div class="section section-top d-flex-centered">
 				<div class=""><button class="app-button"><i class="fas fa-power-off"></i></button></div>
 				<div class=""><button class="app-button"><i class="fas fa-tools"></i></button></div>
-				<div class=""><button class="app-button"><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"><i class="fas fa-ellipsis-v"></i></i></button></div>
-				<div class=""><button class="app-button"><i class="fas fa-bars"></i></i></button></div>
+				<div class=""><button class="app-button"><i class="fas fa-bars"></i></button></div>
+				<div class=""><button class="app-button"><i class="fas fa-tv"></i></button></div>
 			</div>
 	
 	
@@ -112,21 +115,63 @@
 				<div class="d-flex-centered section-motion__quadrant"><button class="app-button app-button--no-border"><i class="fas fa-caret-down"></i></button></div>
 				<div class="d-flex-centered section-motion__quadrant"><span></span></div>
 			</div>
+
+			<div class="section section-bottom-plus d-flex-centered">
+				<div class=""><button class="app-button rotate-180"><i class="fas fa-sign-out-alt"></i></button></div>
+				<div class=""></div>
+				<div class=""><button class="app-button"><i class="fas fa-home"></i></button></div>
+			</div>	
 	
-	
-			<div class="section section-top d-flex-centered">
-				<div class=""><button class="app-button"><i class="fas fa-power-off"></i></button></div>
-				<div class=""><button class="app-button"><i class="fas fa-tools"></i></button></div>
-				<div class=""><button class="app-button"><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"><i class="fas fa-ellipsis-v"></i></i></button></div>
-				<div class=""><button class="app-button"><i class="fas fa-bars"></i></i></button></div>
+			<div class="section section-bottom d-flex-centered">
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-minus"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-volume-up"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-plus"></i></button></div>
 			</div>
 		</div>
 
 
+		<div class="app-content app-content--with-keypad">
+			<div class="section section-top d-flex-centered">
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-tools"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-bars"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-tv"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-info"></i></button></div>
+			</div>
+	
+	
+	
+			<div class="d-flex-centered section section-keypad">
+				<div class="d-flex-centered"><button class="app-button">1</button></div>
+				<div class="d-flex-centered"><button class="app-button">2</button></div>
+				<div class="d-flex-centered"><button class="app-button">3</button></div>
+				<div class="d-flex-centered"><button class="app-button">4</button></div>
+				<div class="d-flex-centered"><button class="app-button">5</button></div>
+				<div class="d-flex-centered"><button class="app-button">6</button></div>
+				<div class="d-flex-centered"><button class="app-button">7</button></div>
+				<div class="d-flex-centered"><button class="app-button">8</button></div>
+				<div class="d-flex-centered"><button class="app-button">9</button></div>
+				<div class="d-flex-centered"></div>
+				<div class="d-flex-centered"><span><button class="app-button">0</button></span></div>
+				<div class="d-flex-centered"></div>
+			</div>
+
+			<div class="section section-bottom section-channels d-flex-centered">
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-minus"></i></button></div>
+				<div class=""><span>Ch</span></div>
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-plus"></i></button></div>
+			</div>
+	
+			<div class="section section-bottom d-flex-centered">
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-minus"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-volume-up"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border"><i class="fas fa-plus"></i></button></div>
+			</div>
+		</div>
+
 		<div class="app-nav d-flex-centered">
 			<div class="app-nav__content">
-				<button class="app-button app-button--no-border"><i class="fas fa-bars"></i></button>
-				<button class="app-button app-button--no-border"><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"><i class="fas fa-ellipsis-v"></i></i></button>
+				<button class="app-button app-button--no-border app-button--nav app-button--nav--active"><i class="fas fa-bars"></i></button>
+				<button class="app-button app-button--no-border app-button--nav"><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"><i class="fas fa-ellipsis-v"></i></i></button>
 			</div>
 		</div>
 
