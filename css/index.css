@@ -1,9 +1,17 @@
 body{
   background-color: #090909;
+  font-size: 16px;
+}
+
+*, *::before, *::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .section{
   margin: 0 auto;
+  min-height: 3rem;
 }
 
 .section-motion{
@@ -24,20 +32,19 @@ body{
   justify-content: center;
   align-items: stretch;
 }
-.section-motion__quadrant button{
+
+
+.section-top > div {
+  margin: 0 .5rem;
+}
+
+
+.app-nav__content{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.3rem;
   width: 100%;
-  border: none;
-  background: none;
-  color: #eee;
-  border-radius: 50%;
 }
-.section-motion__quadrant button:hover{
-  background-color: rgba(255,255,255,0.02);
-}
-.section-motion__quadrant button:focus{
-  outline: none;
-}
-.section-motion__quadrant button:active{
-  outline: none;
-  border: 1px solid rgba(255,255,255,0.05);
+.app-nav__content button{
+  font-size: 1.2rem;
 }

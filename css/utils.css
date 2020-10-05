@@ -1,0 +1,45 @@
+
+
+.d-flex-centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.d-none{
+  display: none
+}
+
+.app-button{
+  --side: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  width: var(--side);
+  height: var(--side);
+  border: 1px solid #eee;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: none;
+  color: #eee;
+  border-radius: 50%;
+  transition: all .3s;
+}
+.app-button:hover{
+  background-color: rgba(255,255,255,0.1);
+  transition: all .3s;
+}
+.app-button:focus{
+  outline: none;
+  transition: all .3s;
+}
+.app-button:active{
+  border: 1px solid #eee;
+  transition: background-color .3s;
+}
+.app-button--no-border{
+  border: none;
+}
+.app-button--no-border:active{
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.app-button--no-border:hover{
+  background-color: rgba(255,255,255,0.02);
+}
