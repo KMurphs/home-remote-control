@@ -77,6 +77,12 @@
 			}
 		}
 
+		.app-loader__text{
+			color: #777;
+		}
+		.app-loader__text > div{
+			padding-top: .5rem;
+		}
 		
 
 	</style>
@@ -91,7 +97,10 @@
 
 		<div id="app-loader" class="app-loader">
 			<div class="lds-facebook"><div></div><div></div><div></div></div>
-			<div>Loading Remote Control</div> 
+			<div class="app-loader__text">
+				<div>Loading Remote Control</div>
+				<div>Connecting to Device</div>
+			</div> 
 		</div>
 
 
@@ -189,7 +198,7 @@
 
 		window.addEventListener("load", ()=>{
 			
-			ws.connect();
+			await ws.connect();
 			loader.deactivate();
 			navControls.setup();
 			keys.setup(ws);
