@@ -4,7 +4,7 @@
 function DeviceWebsocket(deviceIP, devicePort, clientName, useWebsocketSecure){
 	if(!deviceIP) deviceIP = "192.168.0.190";
 	if(!devicePort) devicePort = 8001;
-	if(!clientName) clientName = "samsung";
+	if(!clientName) clientName = `samsung-${new Date().getTime()}`;
 	if(!useWebsocketSecure) useWebsocketSecure = false;
 	this.deviceIP = deviceIP;
 	this.devicePort = devicePort;
