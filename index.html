@@ -7,8 +7,11 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+
+	<link rel="stylesheet" href="./css/all.min.css" />
 	<link rel="stylesheet" href="./css/index.css">
 	<link rel="shortcut icon" href="./favicon.ico">
+	
 	<style>
 
 		.app-root{
@@ -30,7 +33,7 @@
 			width: 16px;
 			background: #fff;
 			animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-			background-color: #eee;
+			background-color: #555;
 		}
 		.lds-facebook div:nth-child(1) {
 			left: 8px;
@@ -65,74 +68,32 @@
 	<noscript>This Application requires Javascript to Run</noscript>
 	
 	<section class="app-root">
-		<div class="lds-facebook"><div></div><div></div><div></div></div>
-		<div>Loading Remote Control</div> 
-	</section>
+		<div class="loader">
+			<div class="lds-facebook"><div></div><div></div><div></div></div>
+			<div>Loading Remote Control</div> 
+		</div>
+		<div class="section section-motion">
+			<div class="section-motion__quadrant"><span></span></div>
+			<div class="section-motion__quadrant"><button><i class="fas fa-caret-up"></i></button></div>
+			<div class="section-motion__quadrant"><span></span></div>
+			<div class="section-motion__quadrant"><button><i class="fas fa-caret-left"></i></button></div>
+			<div class="section-motion__quadrant"><button><i class="far fa-dot-circle"></i></button></div>
+			<div class="section-motion__quadrant"><button><i class="fas fa-caret-right"></i></button></div>
+			<div class="section-motion__quadrant"><span></span></div>
+			<div class="section-motion__quadrant"><button><i class="fas fa-caret-down"></i></button></div>
+			<div class="section-motion__quadrant"><span></span></div>
 
-
-
-	<section>
-		<!-- This is the modal -->
-		<div id="my-id" uk-modal>
-			<div class="uk-modal-dialog uk-modal-body">
-					<h2 class="uk-modal-title"></h2>
-					<button class="uk-modal-close" type="button"></button>
-			</div>
 		</div>
 	</section>
 
 
 
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js" 
-					integrity="sha512-6AXIWogbKpsHvoZJrJtHpIYES4wP8czSj0zk7ZfwOYS8GWYFNSykwdfapt7yQc4ikZytemBu+QyVObzBHJMwYg==" 
-					crossorigin="anonymous">
-	</script>
-	
-	<!-- UIkit CSS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/css/uikit.min.css" />
-
-	<!-- UIkit JS -->
-	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit-icons.min.js"></script>
-
-
-	<script src="./js/templates.js"></script>
-	<script src="./js/keys.js"></script>
-	<script src="./js/ws.js"></script>
-	<script>
-		var ws = null;
-		window.addEventListener("load", ()=>{
-
-
-			ws = new DeviceWebsocket();
-			ws.connect();
-
-
-			const data = {
-				'groups': Object.keys(remoteKeys).map(function(objKey){
-					let res = { 'name': objKey }; 
-					res['entries'] = remoteKeys[objKey]; 
-					return res;
-				})
-			}
-			console.log(data);
-
-
-			html = Mustache.render(template, data);
-			document.querySelector(".app-root").innerHTML = html;
-
-
-		}, false);
 
 
 
-		function fct(keyCode){
-			console.log("[" + new Date().toISOString() + "] Key Pressed: " + keyCode);
-			ws.applyKey(keyCode);
-		}
 
-	</script>
+
   
 </body>
 </html>
