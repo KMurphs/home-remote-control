@@ -78,7 +78,7 @@ body{
 
 
 
-.app-content--with-keypad{
+.app-content.app-content--with-keypad{
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -89,10 +89,10 @@ body{
   grid-template-rows: 1fr 1fr 1fr;
   gap: 0.5rem 1.5rem;
 }
-.app-content--with-keypad .section-bottom{
+.app-content.app-content--with-keypad .section-bottom{
   color: white;
 }
-.app-content--with-keypad .section-bottom.section-channels{
+.app-content.app-content--with-keypad .section-bottom.section-channels{
   margin-bottom: -1.7rem;
   color: white;
 }
