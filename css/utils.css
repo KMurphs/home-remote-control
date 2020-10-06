@@ -9,6 +9,11 @@
   display: none !important;
 }
 
+
+
+
+
+
 .app-button{
   --side: 2.5rem;
   width: 2.5rem;
@@ -22,6 +27,32 @@
   border-radius: 50%;
   transition: all .3s;
 }
+
+@media (min-width: 400px) { 
+  .app-button{
+    --side: 3.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    width: var(--side);
+    height: var(--side);
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 500px) { 
+  .app-button{
+    --side: 4rem;
+    width: 4rem;
+    height: 4rem;
+    width: var(--side);
+    height: var(--side);
+    font-size: 1.2rem;
+  }
+}
+
+
+
+
+
 .app-button:hover{
   background-color: rgba(255,255,255,0.1);
   transition: all .3s;
@@ -51,6 +82,7 @@
 .app-button--nav.app-button--nav--active{
   background-color: #b00909;
   background-color: #e63333;
+  background-color: var(--color-accent-300);
 }
 
 .rotate-180{
