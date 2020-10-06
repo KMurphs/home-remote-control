@@ -115,7 +115,7 @@
 	
 				<div class="app-content--main-view sliding-pane app-content--hidden">
 					<div class="section section-top d-flex-centered">
-						<div class=""><button class="app-button power-key" data-keycode="KEY_POWEROFF1"><i class="fas fa-power-off"></i></button></div>
+						<div class=""><button class="app-button power-key" data-keycode="KEY_POWEROFF"><i class="fas fa-power-off"></i></button></div>
 						<div class=""><button class="app-button" data-keycode="KEY_TOOLS"><i class="fas fa-tools"></i></button></div>
 						<div class=""><button class="app-button" data-keycode="KEY_MENU"><i class="fas fa-bars"></i></button></div>
 						<div class=""><button class="app-button" data-keycode="KEY_SOURCE"><i class="fas fa-tv"></i></button></div>
@@ -143,7 +143,7 @@
 			
 					<div class="section section-bottom d-flex-centered">
 						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLDOWN"><i class="fas fa-minus"></i></button></div>
-						<div class=""><button class="app-button app-button--no-border mute-key" data-keycode="KEY_MUTE1"><i class="fas fa-volume-up"></i><i class="fas fa-volume-mute"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border mute-key" data-keycode="KEY_MUTE"><i class="fas fa-volume-up"></i><i class="fas fa-volume-mute"></i></button></div>
 						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLUP"><i class="fas fa-plus"></i></button></div>
 					</div>
 				</div>
@@ -179,7 +179,7 @@
 			
 					<div class="section section-bottom d-flex-centered">
 						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLDOWN"><i class="fas fa-minus"></i></button></div>
-						<div class=""><button class="app-button app-button--no-border mute-key" data-keycode="KEY_MUTE1"><i class="fas fa-volume-up"></i><i class="fas fa-volume-mute"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border mute-key" data-keycode="KEY_MUTE"><i class="fas fa-volume-up"></i><i class="fas fa-volume-mute"></i></button></div>
 						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLUP"><i class="fas fa-plus"></i></button></div>
 					</div>
 				</div>
@@ -211,7 +211,7 @@
 		window.addEventListener("load", async function(){
 			
 			await ws.connect(
-				function(){ appRoot.classList.add("app-connected"); appRoot.classList.remove("app-disconnected"); appAlert.success("App Connected"); },
+				function(){ appRoot.classList.add("app-connected"); appRoot.classList.remove("app-disconnected"); appAlert.success("Connected To Device"); },
 				function(){ appRoot.classList.add("app-disconnected"); appRoot.classList.remove("app-connected"); appAlert.warning("Connection was closed");  },
 				function(err){ console.error(err); appAlert.error(err); }
 			);

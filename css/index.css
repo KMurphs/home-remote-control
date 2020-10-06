@@ -1,6 +1,7 @@
 :root{
   --color-accent-500: #cc0001;
   --color-accent-300: #e63333;
+  --color-accent-700: #a40e0e;
 }
 
 body{
@@ -112,6 +113,12 @@ body{
 }
 .app-nav__content button{
   font-size: 1.2rem;
+  transition: all .3s;
+}
+.app-nav__content button:hover{
+  background-color: #a40e0e;
+  background-color: var(--color-accent-700);
+  transition: all .3s;
 }
 
 .section-bottom > div {
@@ -198,6 +205,11 @@ body{
   background-color: #cc0001;
   background-color: var(--color-accent-500);;
   color: white;
+  transition: all .3s;
+}
+.power-key.power-key--active:hover{
+  background-color: #a40e0e;
+  background-color: var(--color-accent-700);
   transition: all .3s;
 }
 

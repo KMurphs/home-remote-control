@@ -17,7 +17,8 @@ DeviceWebsocket.prototype.version = "1.0";
 DeviceWebsocket.prototype.connect = function(onOpenCb, onCloseCb, onErrorCb){//(onError, onMessage, onOpen, onClose){
 
 	
-	return new Promise((resolve, reject) => {
+	
+	return new Promise((function(resolve, reject){
 
 		this.ws = new WebSocket( (this.useWebsocketSecure ? 'wss' : 'ws') + "://" + this.deviceIP + ":" + this.devicePort + "/api/v2/channels/samsung.remote.control?name=" + btoa(this.clientName) );
 		
@@ -31,22 +32,24 @@ DeviceWebsocket.prototype.connect = function(onOpenCb, onCloseCb, onErrorCb){//(
 			console.log('Remote Device sent: ', evt);
 			// if(onMessage) onMessage(evt.data);
 		};  
-		this.ws.onclose = function(evt) {
+		this.ws.onclose = (function(evt) {
 			
 			console.log('Socket is closed. Reconnect will be attempted in 1 second.', evt.reason);
 			if(onCloseCb) onCloseCb();
 			
-			setTimeout(function() {
+			setTimeout((function() {
 				this.ws.connect(onOpenCb, onCloseCb, onErrorCb);
-			}, 1000);
-		}
-		this.ws.onerror = function(evt) {
+			}).bind(this), 1000);
+		}).bind(this)
+
+
+		this.ws.onerror = (function(evt) {
 			if(onErrorCb) onErrorCb(evt);
 			this.ws.close();
-		}
+		}).bind(this)
 
 
-	})
+	}).bind(this))
 	
 
 }

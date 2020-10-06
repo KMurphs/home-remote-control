@@ -8,7 +8,7 @@ REM SET ip_address=http://192.168.0.151
 
 REM curl -X POST http://192.168.0.200:80/delete/js/ws.js
 REM curl -X POST --data-binary @js/ws.js http://192.168.0.200:80/upload/js/ws.js
-
+REM curl -X POST --data-binary @js/ws.js http://192.168.0.200:80/upload/webfonts/fa-solid-900.ttf
 
 
 SET upload_files[0]=index.html
@@ -22,7 +22,7 @@ REM SET upload_files[7]=sw.js
 
 
 SET /a "x=0"
-:SymLoop1 
+:SymLoop
 If DEFINED upload_files[%x%] ( 
   IF "%MODE%" == "DELETE" (
     ECHO.
@@ -35,7 +35,7 @@ If DEFINED upload_files[%x%] (
   )
 
 	SET /a "x+=1"
-	GOTO :SymLoop1
+	GOTO :SymLoop
 )
 
 
@@ -44,11 +44,12 @@ If DEFINED upload_files[%x%] (
 
 
 SET upload_files_css[0]=index.css
-REM SET upload_files_css[1]=uikit.min.css
+SET upload_files_css[1]=all.min.css
+SET upload_files_css[2]=utils.css
 
 CD ./css
 SET /a "x=0"
-:SymLoop2
+:SymLoop-css
 If DEFINED upload_files_css[%x%] ( 
   IF "%MODE%" == "DELETE" (
     ECHO.
@@ -61,7 +62,44 @@ If DEFINED upload_files_css[%x%] (
   )
 
 	SET /a "x+=1"
-	GOTO :SymLoop2
+	GOTO :SymLoop-css
+)
+CD ..
+
+
+
+
+
+
+
+
+SET upload_files_webfonts[0]=fa-regular-400.ttf
+SET upload_files_webfonts[1]=fa-solid-900.ttf
+SET upload_files_webfonts[2]=fa-regular-400.woff
+SET upload_files_webfonts[3]=fa-solid-900.woff
+SET upload_files_webfonts[4]=fa-regular-400.woff2
+SET upload_files_webfonts[5]=fa-solid-900.woff2
+SET upload_files_webfonts[6]=fa-regular-400.eot
+SET upload_files_webfonts[7]=fa-solid-900.eot
+SET upload_files_webfonts[8]=fa-regular-400.svg
+SET upload_files_webfonts[9]=fa-solid-900.svg
+
+CD ./webfonts
+SET /a "x=0"
+:SymLoop-webfonts
+If DEFINED upload_files_webfonts[%x%] ( 
+  IF "%MODE%" == "DELETE" (
+    ECHO.
+    CALL ECHO Deleting File: %%upload_files_webfonts[%x%]%% at '%%ip_address%%:80/delete/webfonts/%%upload_files_webfonts[%x%]%%'
+	  CALL curl -X POST %%ip_address%%:80/delete/webfonts/%%upload_files_webfonts[%x%]%% 
+  ) ELSE (
+    ECHO.
+    CALL ECHO Uploading File: %%upload_files_webfonts[%x%]%% at '%%ip_address%%:80/upload/webfonts/%%upload_files_webfonts[%x%]%%'
+	  CALL curl -X POST --data-binary @%%upload_files_webfonts[%x%]%% %%ip_address%%:80/upload/webfonts/%%upload_files_webfonts[%x%]%% 
+  )
+
+	SET /a "x+=1"
+	GOTO :SymLoop-webfonts
 )
 CD ..
 
@@ -76,19 +114,17 @@ CD ..
 
 
 
-
-
-
 SET upload_files_js[0]=ws.js
-SET upload_files_js[1]=templates.js
+SET upload_files_js[1]=alerts.js
 SET upload_files_js[2]=keys.js
-REM SET upload_files_js[3]=mustache.min.js
-REM SET upload_files_js[4]=uikit.min.js
-REM SET upload_files_js[5]=uikit-icons.min.js
+SET upload_files_js[3]=html-elements.js
+SET upload_files_js[4]=loader.js
+SET upload_files_js[5]=nav-control.js
+SET upload_files_js[6]=toggling-keys.js
 
 CD ./js
 SET /a "x=0"
-:SymLoop3
+:SymLoop-js
 If DEFINED upload_files_js[%x%] ( 
   IF "%MODE%" == "DELETE" (
     ECHO.
@@ -101,6 +137,6 @@ If DEFINED upload_files_js[%x%] (
   )
 
 	SET /a "x+=1"
-	GOTO :SymLoop3
+	GOTO :SymLoop-js
 )
 CD ..

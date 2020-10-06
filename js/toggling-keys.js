@@ -15,7 +15,7 @@ const togglingKeys = {
     // Handle Mute Key
     let muteState = false;
 
-    muteKeys.forEach(element => {
+    muteKeys.forEach(function(element) {
       element.addEventListener('click', function(evt){
         muteState = !muteState;
         toggleMuteKeys(muteState);
@@ -23,7 +23,7 @@ const togglingKeys = {
     });
 
     function toggleMuteKeys(muteState){
-      muteKeys.forEach(element => {
+      muteKeys.forEach(function(element) {
         element.classList.remove('mute-key--active');
         if(muteState){
           element.classList.add('mute-key--active');
