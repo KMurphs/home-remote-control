@@ -106,6 +106,11 @@
 
 
 		<div class="app-content d-none">
+			<div class="app-alerts">
+				<div class="icon"><i class="fas fa-info-circle"></i></div>
+				<div class="text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, ducimus.</p></div>
+				<div class="close"><i class="fas fa-times"></i></div>
+			</div>
 			<div class="app-content--main-view sliding-pane app-content--hidden">
 				<div class="section section-top d-flex-centered">
 					<div class=""><button class="app-button power-key" data-keycode="KEY_POWEROFF1"><i class="fas fa-power-off"></i></button></div>
@@ -200,7 +205,11 @@
 
 		window.addEventListener("load", async function(){
 			
-			await ws.connect();
+			await ws.connect(
+				function(){ appRoot.classList.add("app-connected"); appRoot.classList.remove("app-disconnected") },
+				function(){ appRoot.classList.add("app-disconnected"); appRoot.classList.remove("app-connected") },
+				function(err){ console.error(err) }
+			);
 			loader.deactivate();
 			appContent.classList.remove("d-none");
 			navControls.setup();

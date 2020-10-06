@@ -123,6 +123,7 @@ body{
   transition: all .3s;
 }
 
+.app-connected .power-key,
 .power-key.power-key--active{
   background-color: #cc0001;
   color: white;
@@ -141,4 +142,46 @@ body{
 }
 .mute-key.mute-key--active .fa-volume-up{
   display: none;
+}
+
+
+
+
+
+
+
+.app-alerts{
+  position: absolute;
+  min-height: 50px;
+  width: 90%;
+  left: 5%;
+  top: 1rem;
+  z-index: 100;
+  border-radius: 5px;
+  background-color: orange;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: 1fr;
+  position: relative;
+}
+.app-alerts .close{
+  position: absolute;
+  top: 0.2rem;
+  right: 0.3rem;
+  opacity: .7;
+  /* font-size: 1.2rem; */
+}
+.app-alerts > div{
+  display: flex;
+  align-items: center;
+  justify-self: flex-start;
+}
+.app-alerts .icon{
+  justify-self: center;
+  font-size: 1.3rem;
+}
+.app-alerts .text{
+  padding: 1rem .5rem;
+  text-align: left;
+  font-size: .9rem;
 }
