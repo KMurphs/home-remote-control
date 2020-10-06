@@ -4,6 +4,7 @@ const mainViewElmt = document.querySelector(".app-content--main-view");
 const keypadViewElmt = document.querySelector(".app-content--with-keypad");
 const loaderElmt = document.querySelector("#app-loader");
 const appContent = document.querySelector(".app-content");
+const appContentContainer = document.querySelector(".app-content-container");
 const appRoot = document.querySelector(".app-root");
 const appAlertElemt = document.querySelector(".app-alerts");
 const appAlertText = document.querySelector(".app-alerts .text");

@@ -44,7 +44,7 @@
 			position: relative;
 			width: 80px;
 			height: 80px;
-			margin-top: 45%;
+			margin-top: 20%;
 		}
 		.lds-facebook div {
 			display: inline-block;
@@ -104,7 +104,7 @@
 			</div> 
 		</div>
 
-		<div class="app-content-container">
+		<div class="app-content-container d-none">
 			<div class="app-content d-none">
 
 				<div class="app-alerts">
@@ -216,6 +216,7 @@
 				function(err){ console.error(err); appAlert.error(err); }
 			);
 			loader.deactivate();
+			appContentContainer.classList.remove("d-none");
 			appContent.classList.remove("d-none");
 			navControls.setup();
 			keys.setup(ws);
