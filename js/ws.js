@@ -15,8 +15,8 @@ function DeviceWebsocket(deviceIP, devicePort, clientName, useWebsocketSecure){
 }
 DeviceWebsocket.prototype.version = "1.0";
 DeviceWebsocket.prototype.connect = function(){//(onError, onMessage, onOpen, onClose){
-
-	return new Promise(function(resolve, reject){
+	console.warn(this.deviceIP, this.devicePort, this.clientName);
+	return new Promise((resolve, reject) => {
 
 		this.ws = new WebSocket( (this.useWebsocketSecure ? 'wss' : 'ws') + "://" + this.deviceIP + ":" + this.devicePort + "/api/v2/channels/samsung.remote.control?name=" + btoa(this.clientName) );
 		

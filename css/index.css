@@ -96,3 +96,30 @@ body{
   margin-bottom: -1.7rem;
   color: white;
 }
+
+
+
+.power-key{
+  color: #cc0001;
+  transition: all .3s;
+}
+
+.power-key.power-key--active{
+  background-color: #cc0001;
+  color: white;
+  transition: all .3s;
+}
+
+
+.mute-key .fa-volume-mute{
+  display: none;
+}
+.mute-key .fa-volume-up{
+  display: inline;
+}
+.mute-key.mute-key--active .fa-volume-mute{
+  display: inline;
+}
+.mute-key.mute-key--active .fa-volume-up{
+  display: none;
+}

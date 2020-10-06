@@ -98,7 +98,7 @@
 		<div id="app-loader" class="app-loader">
 			<div class="lds-facebook"><div></div><div></div><div></div></div>
 			<div class="app-loader__text">
-				<div>Loading Remote Control</div>
+				<div>Loading...</div>
 				<div>Connecting to Device</div>
 			</div> 
 		</div>
@@ -106,7 +106,7 @@
 
 		<div class="app-content app-content--main-view d-none">
 			<div class="section section-top d-flex-centered">
-				<div class=""><button class="app-button" data-keycode="KEY_POWEROFF"><i class="fas fa-power-off"></i></button></div>
+				<div class=""><button class="app-button power-key" data-keycode="KEY_POWEROFF1"><i class="fas fa-power-off"></i></button></div>
 				<div class=""><button class="app-button" data-keycode="KEY_TOOLS"><i class="fas fa-tools"></i></button></div>
 				<div class=""><button class="app-button" data-keycode="KEY_MENU"><i class="fas fa-bars"></i></button></div>
 				<div class=""><button class="app-button" data-keycode="KEY_SOURCE"><i class="fas fa-tv"></i></button></div>
@@ -134,7 +134,7 @@
 	
 			<div class="section section-bottom d-flex-centered">
 				<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLDOWN"><i class="fas fa-minus"></i></button></div>
-				<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_MUTE"><i class="fas fa-volume-up"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border mute-key" data-keycode="KEY_MUTE1"><i class="fas fa-volume-up"></i><i class="fas fa-volume-mute"></i></button></div>
 				<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLUP"><i class="fas fa-plus"></i></button></div>
 			</div>
 		</div>
@@ -173,7 +173,7 @@
 	
 			<div class="section section-bottom d-flex-centered">
 				<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLDOWN"><i class="fas fa-minus"></i></button></div>
-				<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_MUTE"><i class="fas fa-volume-up"></i></button></div>
+				<div class=""><button class="app-button app-button--no-border mute-key" data-keycode="KEY_MUTE1"><i class="fas fa-volume-up"></i><i class="fas fa-volume-mute"></i></button></div>
 				<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLUP"><i class="fas fa-plus"></i></button></div>
 			</div>
 		</div>
@@ -192,16 +192,18 @@
 	<script src="./js/nav-control.js"></script>
 	<script src="./js/loader.js"></script>
 	<script src="./js/keys.js"></script>
+	<script src="./js/toggling-keys.js"></script>
 	<script>
 
 		const ws = new DeviceWebsocket();
 
-		window.addEventListener("load", ()=>{
+		window.addEventListener("load", async function(){
 			
 			await ws.connect();
 			loader.deactivate();
 			navControls.setup();
 			keys.setup(ws);
+			togglingKeys.setup()
 		
 		})
 	</script>
