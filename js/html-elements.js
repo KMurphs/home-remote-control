@@ -5,6 +5,10 @@ const keypadViewElmt = document.querySelector(".app-content--with-keypad");
 const loaderElmt = document.querySelector("#app-loader");
 const appContent = document.querySelector(".app-content");
 const appRoot = document.querySelector(".app-root");
+const appAlertElemt = document.querySelector(".app-alerts");
+const appAlertText = document.querySelector(".app-alerts .text");
+const appAlertIcon = document.querySelector(".app-alerts .icon");
+const appAlertClose = document.querySelector(".app-alerts .close");
 
 
 const powerKey = document.querySelector(".power-key");

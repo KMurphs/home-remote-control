@@ -199,6 +199,7 @@
 	<script src="./js/loader.js"></script>
 	<script src="./js/keys.js"></script>
 	<script src="./js/toggling-keys.js"></script>
+	<script src="./js/alerts.js"></script>
 	<script>
 
 		const ws = new DeviceWebsocket();
@@ -206,15 +207,15 @@
 		window.addEventListener("load", async function(){
 			
 			await ws.connect(
-				function(){ appRoot.classList.add("app-connected"); appRoot.classList.remove("app-disconnected") },
-				function(){ appRoot.classList.add("app-disconnected"); appRoot.classList.remove("app-connected") },
-				function(err){ console.error(err) }
+				function(){ appRoot.classList.add("app-connected"); appRoot.classList.remove("app-disconnected"); appAlert.success("App Connected"); },
+				function(){ appRoot.classList.add("app-disconnected"); appRoot.classList.remove("app-connected"); appAlert.warning("Connection was closed");  },
+				function(err){ console.error(err); appAlert.error(err); }
 			);
 			loader.deactivate();
 			appContent.classList.remove("d-none");
 			navControls.setup();
 			keys.setup(ws);
-			togglingKeys.setup()
+			togglingKeys.setup();
 		
 		})
 	</script>
