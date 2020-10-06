@@ -77,10 +77,16 @@ body{
 }
 
 
-
-.app-content.app-content--with-keypad{
+.app-content .app-content--with-keypad,
+.app-content .app-content--main-view{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.app-content .app-content--with-keypad{
   padding-top: 0;
   padding-bottom: 0;
+  justify-content: space-between;
 }
 
 .section-keypad{
@@ -89,12 +95,25 @@ body{
   grid-template-rows: 1fr 1fr 1fr;
   gap: 0.5rem 1.5rem;
 }
-.app-content.app-content--with-keypad .section-bottom{
+.app-content .app-content--with-keypad .section-bottom{
   color: white;
 }
-.app-content.app-content--with-keypad .section-bottom.section-channels{
+.app-content .app-content--with-keypad .section-bottom.section-channels{
   margin-bottom: -1.7rem;
   color: white;
+}
+
+.app-content .sliding-pane{
+  transition: all .3s;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.app-content .app-content--hidden.sliding-pane{
+  left: 100%;
+  transition: all .3s;
 }
 
 
