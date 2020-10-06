@@ -204,6 +204,7 @@
 	<script src="./js/keys.js"></script>
 	<script src="./js/toggling-keys.js"></script>
 	<script src="./js/alerts.js"></script>
+	<script src="./js/swiper.js"></script>
 	<script>
 
 		const ws = new DeviceWebsocket();
@@ -219,6 +220,10 @@
 			appContentContainer.classList.remove("d-none");
 			appContent.classList.remove("d-none");
 			navControls.setup();
+			swiper.setup(
+				navControls.activateNextView,
+				navControls.activateNextView
+			);
 			keys.setup(ws);
 			togglingKeys.setup();
 		

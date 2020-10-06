@@ -13,7 +13,10 @@ const navControls = {
     !activateKeypadViewElmt.classList.contains("app-button--nav--active") && activateKeypadViewElmt.classList.add("app-button--nav--active");
     activateMainViewElmt.classList.contains("app-button--nav--active") && activateMainViewElmt.classList.remove("app-button--nav--active");
   },
-
+  activateNextView: function(){
+    if(keypadViewElmt.classList.contains("app-content--hidden")) navControls.activateKeypadView();
+    else navControls.activateMainView();
+  },
 
   
   setup: function(){

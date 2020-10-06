@@ -121,6 +121,7 @@ SET upload_files_js[3]=html-elements.js
 SET upload_files_js[4]=loader.js
 SET upload_files_js[5]=nav-control.js
 SET upload_files_js[6]=toggling-keys.js
+SET upload_files_js[7]=swiper.js
 
 CD ./js
 SET /a "x=0"
