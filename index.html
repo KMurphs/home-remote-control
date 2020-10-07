@@ -205,6 +205,7 @@
 	<script src="./js/toggling-keys.js"></script>
 	<script src="./js/alerts.js"></script>
 	<script src="./js/swiper.js"></script>
+	<script src="./js/keyboard-handler.js"></script>
 	<script>
 
 		const ws = new DeviceWebsocket();
@@ -226,6 +227,7 @@
 			);
 			keys.setup(ws);
 			togglingKeys.setup();
+			keyboardHandler.setup(ws, togglingKeys.toggleMuteKeys);
 		
 		})
 	</script>

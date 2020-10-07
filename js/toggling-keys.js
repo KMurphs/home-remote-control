@@ -1,4 +1,7 @@
 const togglingKeys = {
+  
+  muteState: false,
+  
   setup: function(){
 
 
@@ -13,25 +16,28 @@ const togglingKeys = {
 
 
     // Handle Mute Key
-    let muteState = false;
+    togglingKeys.muteState = false;
 
     muteKeys.forEach(function(element) {
       element.addEventListener('click', function(evt){
-        muteState = !muteState;
-        toggleMuteKeys(muteState);
+        togglingKeys.toggleMuteKeys(togglingKeys.muteState);
       })
     });
 
-    function toggleMuteKeys(muteState){
-      muteKeys.forEach(function(element) {
-        element.classList.remove('mute-key--active');
-        if(muteState){
-          element.classList.add('mute-key--active');
-        }
-      });
-    }
 
 
 
+
+  },
+  toggleMuteKeys: function(){
+    
+    togglingKeys.muteState = !togglingKeys.muteState;
+
+    muteKeys.forEach(function(element) {  
+      element.classList.remove('mute-key--active');
+      if(togglingKeys.muteState){
+        element.classList.add('mute-key--active');
+      }
+    });
   }
 }
