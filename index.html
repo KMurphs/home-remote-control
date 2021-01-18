@@ -206,11 +206,14 @@
 	<script src="./js/alerts.js"></script>
 	<script src="./js/swiper.js"></script>
 	<script src="./js/keyboard-handler.js"></script>
+	<script src="./js/css-js.js"></script>
 	<script>
 
 		const ws = new DeviceWebsocket();
 
 		window.addEventListener("load", async function(){
+
+			cssJavascript.addVH();
 			
 			await ws.connect(
 				function(){ appRoot.classList.add("app-connected"); appRoot.classList.remove("app-disconnected"); appAlert.success("Connected To Device"); },
