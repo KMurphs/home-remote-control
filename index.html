@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- https://app-manifest.firebaseapp.com/?ref=hackernoon.com -->
+	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+	<link rel="stylesheet" href="./css/all.min.css" />
+	<link rel="stylesheet" href="./css/utils.css">
+	<link rel="stylesheet" href="./css/index.css">
+	<link rel="shortcut icon" href="./favicon.ico">
+	
+	<style>
+
+		.app-root{
+			text-align: center;
+			height: 100vh;
+			display: grid;
+			grid-template-rows: 1fr 3rem;
+			grid-template-columns: 1fr;
+			overflow: hidden;
+		}
+
+		.app-content{
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 1rem 0 1rem 0;
+			position: relative;
+		}
+		
+		.app-nav{
+			background-color: #cc0001;
+			/* flex-direction: column; */
+			align-items: stretch !important;
+		}
+
+		/* https://loading.io/css/ */
+		.lds-facebook {
+			display: inline-block;
+			position: relative;
+			width: 80px;
+			height: 80px;
+			margin-top: 20%;
+		}
+		.lds-facebook div {
+			display: inline-block;
+			position: absolute;
+			left: 8px;
+			width: 16px;
+			background: #fff;
+			animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+			background-color: #555;
+		}
+		.lds-facebook div:nth-child(1) {
+			left: 8px;
+			animation-delay: -0.24s;
+		}
+		.lds-facebook div:nth-child(2) {
+			left: 32px;
+			animation-delay: -0.12s;
+		}
+		.lds-facebook div:nth-child(3) {
+			left: 56px;
+			animation-delay: 0;
+		}
+		@keyframes lds-facebook {
+			0% {
+				top: 8px;
+				height: 64px;
+			}
+			50%, 100% {
+				top: 24px;
+				height: 32px;
+			}
+		}
+
+		.app-loader__text{
+			color: #777;
+		}
+		.app-loader__text > div{
+			padding-top: .5rem;
+		}
+		
+
+	</style>
+
+  <title>Home Remote</title>
+</head>
+<body>
+
+	<noscript>This Application requires Javascript to Run</noscript>
+	
+	<section class="app-root">
+
+		<div id="app-loader" class="app-loader">
+			<div class="lds-facebook"><div></div><div></div><div></div></div>
+			<div class="app-loader__text">
+				<div>Loading...</div>
+				<div>Connecting to Device</div>
+			</div> 
+		</div>
+
+		<div class="app-content-container d-none">
+			<div class="app-content d-none">
+
+				<div class="app-alerts">
+					<div class="icon"><i class="fas fa-info-circle"></i></div>
+					<div class="text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, ducimus.</p></div>
+					<div class="close"><i class="fas fa-times"></i></div>
+				</div>
+	
+				<div class="app-content--main-view sliding-pane app-content--hidden">
+					<div class="section section-top d-flex-centered">
+						<div class=""><button class="app-button power-key" data-keycode="KEY_POWEROFF"><i class="fas fa-power-off"></i></button></div>
+						<div class=""><button class="app-button" data-keycode="KEY_TOOLS"><i class="fas fa-tools"></i></button></div>
+						<div class=""><button class="app-button" data-keycode="KEY_MENU"><i class="fas fa-bars"></i></button></div>
+						<div class=""><button class="app-button" data-keycode="KEY_SOURCE"><i class="fas fa-tv"></i></button></div>
+					</div>
+			
+			
+			
+					<div class="d-flex-centered section section-motion">
+						<div class="d-flex-centered section-motion__quadrant"><span></span></div>
+						<div class="d-flex-centered section-motion__quadrant"><button class="app-button app-button--no-border" data-keycode="KEY_UP"><i class="fas fa-caret-up"></i></button></div>
+						<div class="d-flex-centered section-motion__quadrant"><span></span></div>
+						<div class="d-flex-centered section-motion__quadrant"><button class="app-button app-button--no-border" data-keycode="KEY_LEFT"><i class="fas fa-caret-left"></i></button></div>
+						<div class="d-flex-centered section-motion__quadrant"><button class="app-button app-button--no-border" data-keycode="KEY_ENTER"><i class="far fa-dot-circle"></i></button></div>
+						<div class="d-flex-centered section-motion__quadrant"><button class="app-button app-button--no-border" data-keycode="KEY_RIGHT"><i class="fas fa-caret-right"></i></button></div>
+						<div class="d-flex-centered section-motion__quadrant"><span></span></div>
+						<div class="d-flex-centered section-motion__quadrant"><button class="app-button app-button--no-border" data-keycode="KEY_DOWN"><i class="fas fa-caret-down"></i></button></div>
+						<div class="d-flex-centered section-motion__quadrant"><span></span></div>
+					</div>
+		
+					<div class="section section-bottom-plus d-flex-centered">
+						<div class=""><button class="app-button rotate-180" data-keycode="KEY_RETURN"><i class="fas fa-sign-out-alt"></i></button></div>
+						<div class=""></div>
+						<div class=""><button class="app-button" data-keycode="KEY_HOME"><i class="fas fa-home"></i></button></div>
+					</div>	
+			
+					<div class="section section-bottom d-flex-centered">
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLDOWN"><i class="fas fa-minus"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border mute-key" data-keycode="KEY_MUTE"><i class="fas fa-volume-up"></i><i class="fas fa-volume-mute"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLUP"><i class="fas fa-plus"></i></button></div>
+					</div>
+				</div>
+	
+				<div class="sliding-pane app-content--with-keypad app-content--hidden">
+					<div class="section section-top d-flex-centered">
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_TOOLS"><i class="fas fa-tools"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_MENU"><i class="fas fa-bars"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_SOURCE"><i class="fas fa-tv"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_INFO"><i class="fas fa-info"></i></button></div>
+					</div>
+			
+					<div class="d-flex-centered section section-keypad">
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_1">1</button></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_2">2</button></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_3">3</button></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_4">4</button></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_5">5</button></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_6">6</button></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_7">7</button></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_8">8</button></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_9">9</button></div>
+						<div class="d-flex-centered"></div>
+						<div class="d-flex-centered"><button class="app-button" data-keycode="KEY_0">0</button></div>
+						<div class="d-flex-centered"></div>
+					</div>
+		
+					<div class="section section-bottom section-channels d-flex-centered">
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_CHDOWN"><i class="fas fa-minus"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_CH_LIST"><i class="fas fa-list-ul"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_CHUP"><i class="fas fa-plus"></i></button></div>
+					</div>
+			
+					<div class="section section-bottom d-flex-centered">
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLDOWN"><i class="fas fa-minus"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border mute-key" data-keycode="KEY_MUTE"><i class="fas fa-volume-up"></i><i class="fas fa-volume-mute"></i></button></div>
+						<div class=""><button class="app-button app-button--no-border" data-keycode="KEY_VOLUP"><i class="fas fa-plus"></i></button></div>
+					</div>
+				</div>
+	
+			</div>
+		</div>
+
+
+		<div class="app-nav d-flex-centered">
+			<div class="app-nav__content">
+				<button id="activate-main-view" class="app-button app-button--no-border app-button--nav app-button--nav--active"><i class="fas fa-bars"></i></button>
+				<button id="activate-keypad-view" class="app-button app-button--no-border app-button--nav"><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"><i class="fas fa-ellipsis-v"></i></i></button>
+			</div>
+		</div>
+
+	</section>
+
+	<script src="./js/ws.js"></script>
+	<script src="./js/html-elements.js"></script>
+	<script src="./js/nav-control.js"></script>
+	<script src="./js/loader.js"></script>
+	<script src="./js/keys.js"></script>
+	<script src="./js/toggling-keys.js"></script>
+	<script src="./js/alerts.js"></script>
+	<script src="./js/swiper.js"></script>
+	<script src="./js/keyboard-handler.js"></script>
+	<script>
+
+		const ws = new DeviceWebsocket();
+
+		window.addEventListener("load", async function(){
+			
+			await ws.connect(
+				function(){ appRoot.classList.add("app-connected"); appRoot.classList.remove("app-disconnected"); appAlert.success("Connected To Device"); },
+				function(){ appRoot.classList.add("app-disconnected"); appRoot.classList.remove("app-connected"); appAlert.warning("Connection was closed");  },
+				function(err){ console.error(err); appAlert.error(err); }
+			);
+			loader.deactivate();
+			appContentContainer.classList.remove("d-none");
+			appContent.classList.remove("d-none");
+			navControls.setup();
+			swiper.setup(
+				navControls.activateNextView,
+				navControls.activateNextView
+			);
+			keys.setup(ws);
+			togglingKeys.setup();
+			keyboardHandler.setup(ws, togglingKeys.toggleMuteKeys);
+		
+		})
+	</script>
+
+
+
+
+
+
+  
+</body>
+</html>
