@@ -13,16 +13,16 @@ RUN rm -v /etc/nginx/nginx.conf
 ADD nginx.conf /etc/nginx/
 ADD mime.types /etc/nginx/
 
-ADD css /usr/share/nginx/html/
-ADD js /usr/share/nginx/html/
-ADD webfonts /usr/share/nginx/html/
-ADD favicon /usr/share/nginx/html/
+ADD css /usr/share/nginx/html/css
+ADD js /usr/share/nginx/html/js
+ADD webfonts /usr/share/nginx/html/webfonts
+ADD favicon.ico /usr/share/nginx/html/
 ADD index.html /usr/share/nginx/html/
 
-ADD css /var/www/html/
-ADD js /var/www/html/
-ADD webfonts /var/www/html/
-ADD favicon /var/www/html/
+ADD css /var/www/html/css
+ADD js /var/www/html/js
+ADD webfonts /var/www/html/webfonts
+ADD favicon.ico /var/www/html/
 ADD index.html /var/www/html/
 
 # Append "daemon off;" to the beginning of the configuration
