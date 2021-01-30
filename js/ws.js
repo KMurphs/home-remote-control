@@ -3,7 +3,7 @@
 
 function DeviceWebsocket(deviceIP, devicePort, clientName, useWebsocketSecure){
 	if(!deviceIP) deviceIP = "192.168.0.190";
-	if(!devicePort) devicePort = 8001;
+	if(!devicePort) devicePort = 8001; 
 	if(!clientName) clientName = "samsung";
 	if(!useWebsocketSecure) useWebsocketSecure = false;
 	this.deviceIP = deviceIP;
@@ -33,13 +33,11 @@ DeviceWebsocket.prototype.connect = function(onOpenCb, onCloseCb, onErrorCb){//(
 			// if(onMessage) onMessage(evt.data);
 		};  
 		this.ws.onclose = (function(evt) {
-			
+			const proxyThis = this;
 			console.log('Socket is closed. Reconnect will be attempted in 1 second.', evt.reason);
 			if(onCloseCb) onCloseCb();
 			
-			setTimeout((function() {
-				this.ws.connect(onOpenCb, onCloseCb, onErrorCb);
-			}).bind(this), 1000);
+			setTimeout(() => proxyThis.connect(onOpenCb, onCloseCb, onErrorCb), 1000);
 		}).bind(this)
 
 

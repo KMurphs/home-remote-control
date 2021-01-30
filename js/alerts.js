@@ -5,6 +5,12 @@ const appAlert = {
     appAlertText.innerHTML = `<p>${text}</p>`;
     
 
+    if(appAlertElemt.classList.contains("app-alerts--active")){
+      ["app-alerts--danger", "app-alerts--warning", "app-alerts--info", "app-alerts--success"]
+        .forEach(cssClass => appAlertElemt.classList.remove(cssClass));
+    }
+
+
     appAlertElemt.classList.add("app-alerts--active");
     appAlertElemt.classList.add(cssClass);
 

@@ -9,8 +9,10 @@ const togglingKeys = {
     powerKey.addEventListener('click', function(evt){
       if(powerKey.classList.contains('power-key--active')){
         powerKey.classList.remove('power-key--active');
+        powerKey.dataset.keycode = "KEY_POWERON"
       }else{
         powerKey.classList.add('power-key--active');
+        powerKey.dataset.keycode = "KEY_POWEROFF"
       }
     })
 

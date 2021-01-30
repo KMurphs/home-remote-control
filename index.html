@@ -219,7 +219,7 @@
 			await ws.connect(
 				function(){ appRoot.classList.add("app-connected"); appRoot.classList.remove("app-disconnected"); appAlert.success("Connected To Device"); },
 				function(){ appRoot.classList.add("app-disconnected"); appRoot.classList.remove("app-connected"); appAlert.warning("Connection was closed");  },
-				function(err){ console.error(err); appAlert.error(err); }
+				function(err){ console.error(err); appAlert.danger(err); }
 			);
 			loader.deactivate();
 			appContentContainer.classList.remove("d-none");
