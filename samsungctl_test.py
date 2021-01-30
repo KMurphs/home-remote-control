@@ -8,7 +8,7 @@ config = {
 	"name": "samsungctl",
 	"description": "PC",
 	"id": "",
-	"host": "192.168.0.200",
+	"host": "192.168.0.190",
 	"port": 8001,
 	"method": "websocket",
 	"timeout": 1,

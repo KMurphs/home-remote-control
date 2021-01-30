@@ -6,7 +6,7 @@ import base64
 src     = '192.168.0.110'       # ip of remote
 mac     = 'E4-A4-71-7B-E3-6E' # mac of remote
 remote  = 'python remote'     # remote name
-dst     = '192.168.0.200'       # ip of tv
+dst     = '192.168.0.190'       # ip of tv
 app     = 'python'            # iphone..iapp.samsung
 tv      = '[TV] K-TV'          # iphone.LE32C650.iapp.samsung
 port    = 8001                 # tv port 55000 or 8001
